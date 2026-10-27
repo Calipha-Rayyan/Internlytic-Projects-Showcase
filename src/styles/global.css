@@ -1,0 +1,171 @@
+/* ==========================================================================
+   INTERNLYTIC PROJECTS SHOWCASE - GLOBAL DESIGN SYSTEM TOKENS & RESET
+   ========================================================================== */
+
+:root {
+  /* Official Mandatory Brand Colors */
+  --color-teal: #18B59A;
+  --color-deep-blue: #073A40;
+  --color-white: #FFFFFF;
+  --color-light-bg: #EAF7F4;
+
+  /* Tonal Derivatives & Functional Surfaces */
+  --color-teal-hover: #149B84;
+  --color-teal-active: #0F826E;
+  --color-teal-light: #E0F5F1;
+  --color-teal-soft-border: rgba(24, 181, 154, 0.35);
+  --color-teal-glow: rgba(24, 181, 154, 0.25);
+
+  --color-deep-blue-hover: #0C4D55;
+  --color-deep-blue-active: #05292D;
+  --color-deep-blue-surface: #0B3F46;
+  --color-deep-blue-card: #0F4951;
+
+  --color-canvas: #EAF7F4;
+  --color-surface-white: #FFFFFF;
+  --color-surface-muted: #F3FAF8;
+  --color-surface-tag: #E3F4F1;
+
+  /* Text & Contrast Hierarchy (WCAG AA/AAA compliant) */
+  --color-text-primary: #073A40;
+  --color-text-secondary: #3E6368;
+  --color-text-muted: #64868A;
+  --color-text-inverse: #FFFFFF;
+  --color-text-inverse-muted: #B3D8D3;
+
+  /* Borders & Dividers */
+  --color-border-main: #C8E8E1;
+  --color-border-subtle: #DDF0EC;
+  --color-border-focus: #18B59A;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 3px rgba(7, 58, 64, 0.06), 0 1px 2px rgba(7, 58, 64, 0.04);
+  --shadow-md: 0 4px 12px rgba(7, 58, 64, 0.08), 0 2px 4px rgba(7, 58, 64, 0.04);
+  --shadow-lg: 0 10px 25px -4px rgba(7, 58, 64, 0.12), 0 6px 12px -3px rgba(7, 58, 64, 0.06);
+  --shadow-xl: 0 20px 35px -5px rgba(7, 58, 64, 0.18), 0 10px 16px -4px rgba(7, 58, 64, 0.08);
+  --shadow-teal: 0 8px 20px rgba(24, 181, 154, 0.3);
+
+  /* Typography */
+  --font-family-sans: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-family-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  /* Border Radii */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-full: 9999px;
+
+  /* Transitions & Motion */
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 350ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Layout Containers */
+  --container-max-width: 1280px;
+  --header-height: 72px;
+}
+
+/* Box Sizing & Document Reset */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-family-sans);
+  background-color: var(--color-canvas);
+  color: var(--color-text-primary);
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100%;
+}
+
+/* Typography Base Defaults */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--color-text-primary);
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.015em;
+}
+
+p {
+  color: var(--color-text-secondary);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img, svg {
+  display: block;
+  max-width: 100%;
+}
+
+button, input, select, textarea {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: transparent;
+}
+
+/* Accessible Focus Outlines */
+:focus-visible {
+  outline: 3px solid var(--color-teal);
+  outline-offset: 2px;
+}
+
+/* Screen Reader Only Utility */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Layout Utilities */
+.container {
+  width: 100%;
+  max-width: var(--container-max-width);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+/* Reduced Motion for Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

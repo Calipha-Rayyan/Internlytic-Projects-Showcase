@@ -1,0 +1,205 @@
+/* ==========================================================================
+   INTERNLYTIC PROJECTS SHOWCASE - RESPONSIVE BREAKPOINTS & MOBILE OPTIMIZATIONS
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Wide Desktop (1440px+)
+   -------------------------------------------------------------------------- */
+@media (min-width: 1440px) {
+  :root {
+    --container-max-width: 1360px;
+  }
+
+  .projects-grid,
+  .loading-grid {
+    gap: 2rem;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Medium Desktop / Laptops (<= 1024px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 1024px) {
+  .projects-grid,
+  .loading-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.5rem;
+  }
+
+  .footer-top-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+
+  .footer-brand-col {
+    grid-column: span 2;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Tablets (<= 768px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 768px) {
+  :root {
+    --header-height: 64px;
+  }
+
+  .hero-section {
+    padding: 3.5rem 0 3rem;
+  }
+
+  .hero-stats {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+  }
+
+  .hero-stat-value {
+    font-size: 1.4rem;
+  }
+
+  .toolbar-card {
+    padding: 1.25rem;
+    gap: 1rem;
+  }
+
+  .filter-pills-list {
+    gap: 0.4rem;
+  }
+
+  .filter-pill {
+    padding: 0.35rem 0.75rem;
+    font-size: 0.8125rem;
+  }
+
+  .modal-dialog {
+    max-height: 94vh;
+    border-radius: var(--radius-lg);
+  }
+
+  .modal-body {
+    padding: 1.25rem;
+    gap: 1rem;
+  }
+
+  .modal-footer {
+    padding: 1rem 1.25rem;
+    flex-direction: column-reverse;
+  }
+
+  .modal-footer .btn-primary,
+  .modal-footer .btn-secondary {
+    width: 100%;
+  }
+
+  .footer-top-grid {
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
+  }
+
+  .footer-brand-col {
+    grid-column: span 1;
+  }
+
+  .footer-bottom-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Standard Mobile (<= 640px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 640px) {
+  .projects-grid,
+  .loading-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  .brand-logo-img {
+    height: 32px;
+  }
+
+  .showcase-badge {
+    display: none; /* Keep header clean on small phones */
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .hero-actions .btn-primary,
+  .hero-actions .btn-secondary {
+    width: 100%;
+  }
+
+  .hero-stats {
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+  }
+
+  .hero-stat-item:last-child {
+    grid-column: span 2;
+  }
+
+  .toolbar-status-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.65rem;
+  }
+
+  .modal-meta-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .card-actions-row {
+    flex-wrap: wrap;
+  }
+
+  .card-action-btn-primary {
+    width: 100%;
+    order: 1;
+  }
+
+  .card-link-icon-btn {
+    order: 2;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Small Mobile Devices (360px - 375px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 375px) {
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .hero-title {
+    font-size: 1.85rem;
+  }
+
+  .search-input {
+    font-size: 0.875rem;
+    padding-left: 2.5rem;
+  }
+
+  .card-body {
+    padding: 1rem;
+  }
+
+  .card-title {
+    font-size: 1.05rem;
+  }
+
+  .modal-dialog {
+    margin: 0.5rem;
+  }
+
+  .modal-body {
+    padding: 1rem;
+  }
+}
