@@ -1,5 +1,5 @@
 import React from 'react';
-import { Filter, RotateCcw, Tag } from 'lucide-react';
+import { Filter, RotateCcw, Tag, Check, ChevronDown } from 'lucide-react';
 import { AVAILABLE_TRACKS } from '../data/sampleProjects';
 
 export default function FilterControls({
@@ -15,48 +15,43 @@ export default function FilterControls({
   onResetFilters
 }) {
   return (
-    <div className="filter-tracks-wrapper" id="filter-toolbar" role="region" aria-label="Category and Track Filters">
+    <div className="filter-toolbar-inner" id="filter-toolbar" role="region" aria-label="Category and Track Filters">
+      {/* Top Filter Bar: Track Header and Technology Dropdown */}
       <div className="filter-header-row">
         <div className="filter-label">
-          <Filter size={15} aria-hidden="true" />
+          <Filter size={15} color="#18B59A" aria-hidden="true" />
           <span>Filter by Track / Domain</span>
         </div>
 
-        {/* Optional Technology Filter Dropdown */}
+        {/* Technology Filter Dropdown */}
         {availableTechnologies.length > 0 && (
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-            <label htmlFor="tech-filter-select" className="filter-label" style={{ marginBottom: 0 }}>
-              <Tag size={14} aria-hidden="true" />
+          <div className="tech-filter-group">
+            <label htmlFor="tech-filter-select" className="tech-filter-label">
+              <Tag size={13} color="#18B59A" aria-hidden="true" />
               <span>Tech:</span>
             </label>
-            <select
-              id="tech-filter-select"
-              value={selectedTech}
-              onChange={(e) => onSelectTech(e.target.value)}
-              style={{
-                fontSize: '0.8125rem',
-                fontWeight: 600,
-                color: 'var(--color-deep-blue)',
-                backgroundColor: 'var(--color-surface-muted)',
-                border: '1px solid var(--color-border-main)',
-                borderRadius: 'var(--radius-sm)',
-                padding: '0.3rem 0.6rem',
-                cursor: 'pointer'
-              }}
-              aria-label="Filter by technology"
-            >
-              <option value="">All Technologies</option>
-              {availableTechnologies.map((tech) => (
-                <option key={tech} value={tech}>
-                  {tech}
-                </option>
-              ))}
-            </select>
+            <div className="tech-select-wrapper">
+              <select
+                id="tech-filter-select"
+                value={selectedTech}
+                onChange={(e) => onSelectTech(e.target.value)}
+                className="tech-filter-select"
+                aria-label="Filter by technology"
+              >
+                <option value="">All Tech Stacks ({availableTechnologies.length})</option>
+                {availableTechnologies.map((tech) => (
+                  <option key={tech} value={tech}>
+                    {tech}
+                  </option>
+                ))}
+              </select>
+              <ChevronDown size={14} className="select-chevron" aria-hidden="true" />
+            </div>
           </div>
         )}
       </div>
 
-      {/* Track Pills */}
+      {/* Track Pills List */}
       <div className="filter-pills-list" role="tablist" aria-label="Track Categories">
         {AVAILABLE_TRACKS.map((track) => {
           const isActive = selectedTrack === track;
@@ -71,6 +66,7 @@ export default function FilterControls({
               className={`filter-pill ${isActive ? 'active' : ''}`}
               onClick={() => onSelectTrack(track)}
             >
+              {isActive && <Check size={13} className="pill-check-icon" aria-hidden="true" />}
               <span>{track}</span>
               <span className="filter-pill-count">{count}</span>
             </button>
@@ -78,13 +74,21 @@ export default function FilterControls({
         })}
       </div>
 
-      {/* Summary status and Reset button */}
+      {/* Toolbar Status Row: Result Counter & Reset Button */}
       <div className="toolbar-status-row">
-        <span className="results-count-text">
-          Showing <strong>{filteredCount}</strong> of <strong>{totalCount}</strong> projects
-          {selectedTrack !== 'All Tracks' && ` in "${selectedTrack}"`}
-          {selectedTech && ` using ${selectedTech}`}
-        </span>
+        <div className="results-count-text">
+          Showing <strong>{filteredCount}</strong> of <strong>{totalCount}</strong> showcase projects
+          {selectedTrack !== 'All Tracks' && (
+            <span className="active-filter-indicator">
+              in <em>"{selectedTrack}"</em>
+            </span>
+          )}
+          {selectedTech && (
+            <span className="active-filter-indicator">
+              with <em>"{selectedTech}"</em>
+            </span>
+          )}
+        </div>
 
         {isFiltered && (
           <button
@@ -94,7 +98,7 @@ export default function FilterControls({
             aria-label="Reset all search queries and active filters"
           >
             <RotateCcw size={14} aria-hidden="true" />
-            <span>Reset Filters</span>
+            <span>Reset All Filters</span>
           </button>
         )}
       </div>

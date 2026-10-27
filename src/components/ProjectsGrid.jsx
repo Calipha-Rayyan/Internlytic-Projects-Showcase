@@ -8,10 +8,11 @@ export default function ProjectsGrid({ projects, onOpenDetails }) {
       role="region"
       aria-label="Projects Gallery Grid"
     >
-      {projects.map((project) => (
+      {projects.map((project, index) => (
         <ProjectCard
           key={project.id}
           project={project}
+          index={index}
           onOpenDetails={onOpenDetails}
         />
       ))}

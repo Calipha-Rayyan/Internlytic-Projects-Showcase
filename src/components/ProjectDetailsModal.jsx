@@ -1,12 +1,12 @@
 import React, { useEffect, useRef } from 'react';
-import { X, ExternalLink, Github, Calendar, CheckCircle2, User, Layers, Tag } from 'lucide-react';
+import { X, ExternalLink, Github, Calendar, Info, User, Layers, Tag, ShieldAlert } from 'lucide-react';
 
 export default function ProjectDetailsModal({ project, onClose }) {
   const modalRef = useRef(null);
   const closeButtonRef = useRef(null);
   const previousActiveElementRef = useRef(null);
 
-  // Store trigger element and manage focus
+  // Focus trap and lifecycle management
   useEffect(() => {
     previousActiveElementRef.current = document.activeElement;
 
@@ -31,6 +31,8 @@ export default function ProjectDetailsModal({ project, onClose }) {
         const focusableElements = modalRef.current.querySelectorAll(
           'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
         );
+        if (focusableElements.length === 0) return;
+
         const firstElement = focusableElements[0];
         const lastElement = focusableElements[focusableElements.length - 1];
 
@@ -53,7 +55,7 @@ export default function ProjectDetailsModal({ project, onClose }) {
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
       document.body.style.overflow = originalOverflow;
-      // Restore focus to opener
+      // Restore focus to opening trigger
       if (previousActiveElementRef.current && typeof previousActiveElementRef.current.focus === 'function') {
         previousActiveElementRef.current.focus();
       }
@@ -104,11 +106,17 @@ export default function ProjectDetailsModal({ project, onClose }) {
           </button>
         </div>
 
-        {/* Modal Body */}
+        {/* Modal Body Content (Scrollable if height exceeds screen) */}
         <div className="modal-body">
-          <span className="modal-track-badge">
-            {project.track}
-          </span>
+          <div className="modal-tags-row">
+            <span className="modal-track-badge">
+              {project.track}
+            </span>
+            <span className="modal-status-badge">
+              <Info size={13} aria-hidden="true" />
+              <span>Illustrative Demo Record</span>
+            </span>
+          </div>
 
           <h2 id="modal-project-title" className="modal-title">
             {project.projectTitle}
@@ -116,51 +124,51 @@ export default function ProjectDetailsModal({ project, onClose }) {
 
           {/* Metadata Grid */}
           <div className="modal-meta-grid">
-            <div>
-              <div className="modal-meta-item-label">Creator / Intern</div>
-              <div className="modal-meta-item-value" style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+            <div className="meta-card">
+              <div className="modal-meta-item-label">Creator / Intern Reference</div>
+              <div className="modal-meta-item-value">
                 <User size={15} color="#18B59A" aria-hidden="true" />
                 <span>{project.internName}</span>
               </div>
             </div>
 
-            <div>
-              <div className="modal-meta-item-label">Track / Domain</div>
-              <div className="modal-meta-item-value" style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+            <div className="meta-card">
+              <div className="modal-meta-item-label">Specialization Track</div>
+              <div className="modal-meta-item-value">
                 <Layers size={15} color="#18B59A" aria-hidden="true" />
                 <span>{project.track}</span>
               </div>
             </div>
 
-            <div>
+            <div className="meta-card">
               <div className="modal-meta-item-label">Showcase Record Date</div>
-              <div className="modal-meta-item-value" style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+              <div className="modal-meta-item-value">
                 <Calendar size={15} color="#18B59A" aria-hidden="true" />
                 <span>{project.createdAt || '2026 Season'}</span>
               </div>
             </div>
 
-            <div>
-              <div className="modal-meta-item-label">Verification Status</div>
-              <div className="modal-meta-item-value" style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
-                <CheckCircle2 size={15} color="#18B59A" aria-hidden="true" />
-                <span style={{ textTransform: 'capitalize' }}>{project.approvalStatus || 'Curated Sample'}</span>
+            <div className="meta-card">
+              <div className="modal-meta-item-label">Record Classification</div>
+              <div className="modal-meta-item-value">
+                <Tag size={15} color="#18B59A" aria-hidden="true" />
+                <span>Sample Project</span>
               </div>
             </div>
           </div>
 
           {/* Full Description */}
-          <div>
-            <h3 className="modal-section-heading">Project Overview</h3>
+          <div className="modal-description-block">
+            <h3 className="modal-section-heading">Project Overview &amp; Architecture</h3>
             <p className="modal-full-description">
               {project.description}
             </p>
           </div>
 
-          {/* Technology Stack */}
+          {/* Technology Architecture Stack */}
           {Array.isArray(project.technologies) && project.technologies.length > 0 && (
-            <div>
-              <h3 className="modal-section-heading">Technology Architecture</h3>
+            <div className="modal-tech-block">
+              <h3 className="modal-section-heading">Technology Stack &amp; Libraries</h3>
               <div className="modal-tech-stack" aria-label="Technology components">
                 {project.technologies.map((tech) => (
                   <span key={tech} className="modal-tech-tag">
@@ -172,38 +180,39 @@ export default function ProjectDetailsModal({ project, onClose }) {
           )}
         </div>
 
-        {/* Modal Actions Footer */}
+        {/* Modal Actions Footer with High-Contrast Buttons */}
         <div className="modal-footer">
+          {/* Explicit, High-Contrast Close Action (Fixed contrast issue) */}
           <button
             type="button"
             onClick={onClose}
-            className="btn-secondary"
+            className="modal-action-btn-close btn-tactile"
+            aria-label="Close project details"
           >
-            Close Details
+            <span>Close Details</span>
           </button>
-
-          {hasLiveUrl && (
-            <a
-              href={project.liveUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-primary"
-            >
-              <span>View Project</span>
-              <ExternalLink size={16} aria-hidden="true" />
-            </a>
-          )}
 
           {hasGithubUrl && (
             <a
               href={project.githubUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-secondary"
-              style={{ backgroundColor: '#073A40', color: '#FFFFFF', borderColor: '#18B59A' }}
+              className="modal-action-btn-secondary btn-tactile"
             >
               <Github size={16} aria-hidden="true" />
               <span>GitHub Repository</span>
+            </a>
+          )}
+
+          {hasLiveUrl && (
+            <a
+              href={project.liveUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="modal-action-btn-primary btn-tactile"
+            >
+              <span>View Project</span>
+              <ExternalLink size={16} aria-hidden="true" />
             </a>
           )}
         </div>

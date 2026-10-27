@@ -1,7 +1,7 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useCallback } from 'react';
 
 /**
- * Custom hook to manage search query, category filters, and active results
+ * Custom hook to manage search queries, category filters, and active results
  * @param {Array} projects - List of all projects
  */
 export function useProjectFilters(projects = []) {
@@ -36,7 +36,7 @@ export function useProjectFilters(projects = []) {
     const trimmedQuery = searchQuery.trim().toLowerCase();
 
     return projects.filter((project) => {
-      // 1. Search Query filter (matches project title OR intern name)
+      // 1. Search Query filter (matches project title OR intern name OR tech tags)
       if (trimmedQuery) {
         const titleMatch = project.projectTitle
           ? project.projectTitle.toLowerCase().includes(trimmedQuery)
@@ -80,11 +80,11 @@ export function useProjectFilters(projects = []) {
     selectedTech !== ''
   );
 
-  const resetFilters = () => {
+  const resetFilters = useCallback(() => {
     setSearchQuery('');
     setSelectedTrack('All Tracks');
     setSelectedTech('');
-  };
+  }, []);
 
   return {
     searchQuery,

@@ -7,8 +7,8 @@
  * These records do NOT represent real submissions, private corporate databases,
  * or proprietary intellectual property of Internlytic Technologies.
  * 
- * To integrate with real projects or future backend systems (such as an approved Supabase instance),
- * replace this array or populate it via an API client adhering to the schema below.
+ * All statuses are explicitly labelled as "Sample Project" or "Illustrative Demo Record"
+ * to maintain complete honesty and compliance with showcase guidelines.
  */
 
 export const SAMPLE_PROJECTS = [
@@ -22,7 +22,7 @@ export const SAMPLE_PROJECTS = [
     liveUrl: null,
     githubUrl: null,
     technologies: ["React", "Python", "FastAPI", "scikit-learn", "Tailwind CSS"],
-    approvalStatus: "approved",
+    approvalStatus: "Sample Project",
     createdAt: "2026-08-15"
   },
   {
@@ -35,7 +35,7 @@ export const SAMPLE_PROJECTS = [
     liveUrl: null,
     githubUrl: null,
     technologies: ["React", "TypeScript", "Chart.js", "Node.js", "Express"],
-    approvalStatus: "approved",
+    approvalStatus: "Sample Project",
     createdAt: "2026-08-22"
   },
   {
@@ -48,7 +48,7 @@ export const SAMPLE_PROJECTS = [
     liveUrl: null,
     githubUrl: null,
     technologies: ["React", "PostgreSQL", "REST APIs", "Tailwind CSS"],
-    approvalStatus: "approved",
+    approvalStatus: "Sample Project",
     createdAt: "2026-09-02"
   },
   {
@@ -61,7 +61,7 @@ export const SAMPLE_PROJECTS = [
     liveUrl: null,
     githubUrl: null,
     technologies: ["Figma", "React", "CSS Modules", "HTML5 Semantics", "Vite"],
-    approvalStatus: "approved",
+    approvalStatus: "Sample Project",
     createdAt: "2026-09-10"
   },
   {
@@ -74,7 +74,7 @@ export const SAMPLE_PROJECTS = [
     liveUrl: null,
     githubUrl: null,
     technologies: ["React", "Vite", "OpenMeteo API", "Leaflet Maps", "Vanilla CSS"],
-    approvalStatus: "approved",
+    approvalStatus: "Sample Project",
     createdAt: "2026-09-18"
   },
   {
@@ -87,7 +87,7 @@ export const SAMPLE_PROJECTS = [
     liveUrl: null,
     githubUrl: null,
     technologies: ["Python", "Pandas", "React", "Recharts", "SQL"],
-    approvalStatus: "approved",
+    approvalStatus: "Sample Project",
     createdAt: "2026-09-27"
   },
   {
@@ -100,7 +100,7 @@ export const SAMPLE_PROJECTS = [
     liveUrl: null,
     githubUrl: null,
     technologies: ["React Native", "Expo", "AsyncStorage", "TypeScript"],
-    approvalStatus: "approved",
+    approvalStatus: "Sample Project",
     createdAt: "2026-10-04"
   },
   {
@@ -113,7 +113,7 @@ export const SAMPLE_PROJECTS = [
     liveUrl: null,
     githubUrl: null,
     technologies: ["Python", "OCR", "Hugging Face", "FastAPI", "React"],
-    approvalStatus: "approved",
+    approvalStatus: "Sample Project",
     createdAt: "2026-10-12"
   },
   {
@@ -126,7 +126,7 @@ export const SAMPLE_PROJECTS = [
     liveUrl: null,
     githubUrl: null,
     technologies: ["Docker", "Kubernetes", "Prometheus", "Grafana", "React"],
-    approvalStatus: "approved",
+    approvalStatus: "Sample Project",
     createdAt: "2026-10-19"
   },
   {
@@ -139,7 +139,7 @@ export const SAMPLE_PROJECTS = [
     liveUrl: null,
     githubUrl: null,
     technologies: ["React", "Express.js", "SQLite", "Tailwind CSS"],
-    approvalStatus: "approved",
+    approvalStatus: "Sample Project",
     createdAt: "2026-10-24"
   }
 ];

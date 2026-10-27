@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import Navbar from './components/Navbar';
 import NoticeBanner from './components/NoticeBanner';
 import Hero from './components/Hero';
@@ -11,7 +11,7 @@ import EmptyState from './components/EmptyState';
 import ErrorState from './components/ErrorState';
 import Footer from './components/Footer';
 
-import { SAMPLE_PROJECTS } from './data/sampleProjects';
+import { fetchProjects, computeShowcaseMetrics } from './services/projectService';
 import { useProjectFilters } from './hooks/useProjectFilters';
 
 export default function App() {
@@ -20,32 +20,28 @@ export default function App() {
   const [loadError, setLoadError] = useState(null);
   const [selectedProject, setSelectedProject] = useState(null);
 
-  // Load project records (simulating clean local retrieval with graceful lifecycle)
-  const loadProjectData = useCallback(() => {
+  // Load project records via service layer
+  const loadProjectData = useCallback(async () => {
     setIsLoading(true);
     setLoadError(null);
-
-    // Initial mount hydration with brief transition for skeleton preview
-    const timer = setTimeout(() => {
-      try {
-        if (!SAMPLE_PROJECTS || !Array.isArray(SAMPLE_PROJECTS)) {
-          throw new Error('Project dataset format is invalid or unreachable.');
-        }
-        setProjects(SAMPLE_PROJECTS);
-        setIsLoading(false);
-      } catch (err) {
-        setLoadError(err.message || 'Failed to initialize project records.');
-        setIsLoading(false);
-      }
-    }, 280);
-
-    return () => clearTimeout(timer);
+    try {
+      const data = await fetchProjects({ delayMs: 220 });
+      setProjects(data);
+      setIsLoading(false);
+    } catch (err) {
+      setLoadError(err.message || 'Failed to initialize project records.');
+      setIsLoading(false);
+    }
   }, []);
 
   useEffect(() => {
-    const cleanup = loadProjectData();
-    return cleanup;
+    loadProjectData();
   }, [loadProjectData]);
+
+  // Compute live showcase metrics from loaded dataset
+  const showcaseMetrics = useMemo(() => {
+    return computeShowcaseMetrics(projects);
+  }, [projects]);
 
   // Integrated search & track filtering hook
   const {
@@ -73,13 +69,10 @@ export default function App() {
       <NoticeBanner />
 
       <main id="main-content">
-        {/* Hero Section */}
-        <Hero
-          totalProjects={totalProjectsCount}
-          totalTracks={Object.keys(trackCounts).length - 1}
-        />
+        {/* Two-Column Hero Section with 3D Scene and Video Background */}
+        <Hero metrics={showcaseMetrics} />
 
-        {/* Search & Filter Toolbar */}
+        {/* Search & Filter Toolbar Section */}
         <section className="toolbar-section">
           <div className="container">
             <div className="toolbar-card">
@@ -112,7 +105,7 @@ export default function App() {
           aria-label="Projects Showcase Gallery"
         >
           <div className="container">
-            {/* 1. Loading State */}
+            {/* 1. Loading Skeleton State */}
             {isLoading && <LoadingState count={6} />}
 
             {/* 2. Error State */}
@@ -134,7 +127,7 @@ export default function App() {
               />
             )}
 
-            {/* 5. Success State: Projects Grid */}
+            {/* 5. Success State: Interactive 3D Projects Grid */}
             {!isLoading && !loadError && filteredProjects.length > 0 && (
               <ProjectsGrid
                 projects={filteredProjects}

@@ -1,5 +1,5 @@
 /* ==========================================================================
-   INTERNLYTIC PROJECTS SHOWCASE - RESPONSIVE BREAKPOINTS & MOBILE OPTIMIZATIONS
+   INTERNLYTIC PROJECTS SHOWCASE - RESPONSIVE BREAKPOINTS & MOBILE REFINEMENT
    ========================================================================== */
 
 /* --------------------------------------------------------------------------
@@ -12,7 +12,11 @@
 
   .projects-grid,
   .loading-grid {
-    gap: 2rem;
+    gap: 2.25rem;
+  }
+
+  .hero-container {
+    gap: 4.5rem;
   }
 }
 
@@ -20,6 +24,33 @@
    Medium Desktop / Laptops (<= 1024px)
    -------------------------------------------------------------------------- */
 @media (max-width: 1024px) {
+  .hero-container {
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+
+  .hero-3d-scene {
+    width: 320px;
+    height: 280px;
+  }
+
+  .hero-3d-main-card {
+    width: 280px;
+  }
+
+  .hero-3d-ring.ring-1 {
+    width: 340px;
+    height: 340px;
+  }
+
+  .chip-top-right {
+    right: -10px;
+  }
+
+  .chip-bottom-left {
+    left: -10px;
+  }
+
   .projects-grid,
   .loading-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -41,11 +72,32 @@
    -------------------------------------------------------------------------- */
 @media (max-width: 768px) {
   :root {
-    --header-height: 64px;
+    --header-height: 62px;
   }
 
+  /* Switch Navigation to Mobile Hamburger Drawer */
+  .desktop-nav {
+    display: none !important;
+  }
+
+  .mobile-toggle-wrapper {
+    display: block;
+  }
+
+  /* Hero Section Stacks into Clean Column */
   .hero-section {
-    padding: 3.5rem 0 3rem;
+    padding: 3rem 0 3rem;
+    min-height: auto;
+  }
+
+  .hero-container {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    text-align: left;
+  }
+
+  .hero-left-col {
+    max-width: 100%;
   }
 
   .hero-stats {
@@ -56,41 +108,68 @@
   }
 
   .hero-stat-value {
-    font-size: 1.4rem;
+    font-size: 1.5rem;
+  }
+
+  /* 3D Scene under Hero Text */
+  .hero-right-col {
+    width: 100%;
+  }
+
+  .hero-3d-wrapper {
+    height: 320px;
   }
 
   .toolbar-card {
     padding: 1.25rem;
-    gap: 1rem;
+    gap: 1.15rem;
   }
 
-  .filter-pills-list {
-    gap: 0.4rem;
+  .filter-header-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.65rem;
   }
 
-  .filter-pill {
-    padding: 0.35rem 0.75rem;
-    font-size: 0.8125rem;
+  .tech-filter-group {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .tech-select-wrapper {
+    flex: 1;
+  }
+
+  .tech-filter-select {
+    width: 100%;
   }
 
   .modal-dialog {
-    max-height: 94vh;
+    max-height: 92vh;
     border-radius: var(--radius-lg);
   }
 
   .modal-body {
     padding: 1.25rem;
-    gap: 1rem;
+    gap: 1.15rem;
+  }
+
+  .modal-meta-grid {
+    grid-template-columns: 1fr;
+    gap: 0.65rem;
   }
 
   .modal-footer {
     padding: 1rem 1.25rem;
     flex-direction: column-reverse;
+    gap: 0.65rem;
   }
 
-  .modal-footer .btn-primary,
-  .modal-footer .btn-secondary {
+  .modal-action-btn-close,
+  .modal-action-btn-primary,
+  .modal-action-btn-secondary {
     width: 100%;
+    justify-content: center;
   }
 
   .footer-top-grid {
@@ -123,7 +202,7 @@
   }
 
   .showcase-badge {
-    display: none; /* Keep header clean on small phones */
+    display: none; /* Keep mobile header clean and single-line */
   }
 
   .hero-actions {
@@ -145,16 +224,82 @@
     grid-column: span 2;
   }
 
+  /* Optimized Search Input (No clipped placeholder!) */
+  .search-input {
+    font-size: 0.875rem;
+    padding: 0.75rem 2.6rem 0.75rem 2.4rem;
+  }
+
+  .search-icon {
+    left: 0.8rem;
+  }
+
+  .search-shortcut-hint {
+    display: none;
+  }
+
+  /* Category Filter Pills on Mobile */
+  .filter-pills-list {
+    gap: 0.4rem;
+  }
+
+  .filter-pill {
+    padding: 0.38rem 0.75rem;
+    font-size: 0.8rem;
+  }
+
   .toolbar-status-row {
     flex-direction: column;
     align-items: flex-start;
-    gap: 0.65rem;
+    gap: 0.75rem;
   }
 
-  .modal-meta-grid {
-    grid-template-columns: 1fr;
+  .reset-filters-btn {
+    width: 100%;
+    justify-content: center;
   }
 
+  /* 3D Scene Mobile Tuning */
+  .hero-3d-wrapper {
+    height: 290px;
+  }
+
+  .hero-3d-scene {
+    width: 290px;
+    height: 250px;
+  }
+
+  .hero-3d-main-card {
+    width: 260px;
+  }
+
+  .chip-top-right {
+    top: -15px;
+    right: -10px;
+    transform: translateZ(50px) scale(0.9);
+  }
+
+  .chip-bottom-left {
+    bottom: -15px;
+    left: -10px;
+    transform: translateZ(45px) scale(0.9);
+  }
+
+  .hero-3d-code-badge {
+    display: none; /* Prevent clutter on small phones */
+  }
+
+  .hero-3d-ring.ring-1 {
+    width: 300px;
+    height: 300px;
+  }
+
+  .hero-3d-ring.ring-2 {
+    width: 240px;
+    height: 240px;
+  }
+
+  /* Card Actions on Mobile */
   .card-actions-row {
     flex-wrap: wrap;
   }
@@ -174,17 +319,26 @@
    -------------------------------------------------------------------------- */
 @media (max-width: 375px) {
   .container {
-    padding-left: 1rem;
-    padding-right: 1rem;
+    padding-left: 0.85rem;
+    padding-right: 0.85rem;
   }
 
   .hero-title {
-    font-size: 1.85rem;
+    font-size: 1.95rem;
+  }
+
+  .hero-description {
+    font-size: 0.95rem;
   }
 
   .search-input {
-    font-size: 0.875rem;
-    padding-left: 2.5rem;
+    font-size: 0.825rem;
+    padding-left: 2.2rem;
+  }
+
+  .filter-pill {
+    padding: 0.35rem 0.65rem;
+    font-size: 0.775rem;
   }
 
   .card-body {
@@ -197,9 +351,14 @@
 
   .modal-dialog {
     margin: 0.5rem;
+    max-height: 94vh;
   }
 
   .modal-body {
     padding: 1rem;
+  }
+
+  .state-container {
+    padding: 2rem 1rem;
   }
 }

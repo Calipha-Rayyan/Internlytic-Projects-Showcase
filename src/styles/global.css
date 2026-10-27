@@ -9,27 +9,29 @@
   --color-white: #FFFFFF;
   --color-light-bg: #EAF7F4;
 
-  /* Tonal Derivatives & Functional Surfaces */
-  --color-teal-hover: #149B84;
+  /* Tonal Derivatives & Enhanced Surfaces */
+  --color-teal-hover: #159C84;
   --color-teal-active: #0F826E;
+  --color-teal-bright: #22E4C2;
   --color-teal-light: #E0F5F1;
-  --color-teal-soft-border: rgba(24, 181, 154, 0.35);
-  --color-teal-glow: rgba(24, 181, 154, 0.25);
+  --color-teal-glow: rgba(24, 181, 154, 0.28);
+  --color-teal-glow-lg: 0 0 25px rgba(24, 181, 154, 0.4);
 
   --color-deep-blue-hover: #0C4D55;
   --color-deep-blue-active: #05292D;
-  --color-deep-blue-surface: #0B3F46;
-  --color-deep-blue-card: #0F4951;
+  --color-deep-blue-surface: #09373D;
+  --color-deep-blue-card: #0B4148;
+  --color-deep-blue-border: #145660;
 
   --color-canvas: #EAF7F4;
   --color-surface-white: #FFFFFF;
   --color-surface-muted: #F3FAF8;
-  --color-surface-tag: #E3F4F1;
+  --color-surface-tag: #E1F4F0;
 
-  /* Text & Contrast Hierarchy (WCAG AA/AAA compliant) */
+  /* Text & Contrast Hierarchy (WCAG AAA compliant) */
   --color-text-primary: #073A40;
-  --color-text-secondary: #3E6368;
-  --color-text-muted: #64868A;
+  --color-text-secondary: #365D62;
+  --color-text-muted: #5B7F84;
   --color-text-inverse: #FFFFFF;
   --color-text-inverse-muted: #B3D8D3;
 
@@ -38,18 +40,21 @@
   --color-border-subtle: #DDF0EC;
   --color-border-focus: #18B59A;
 
-  /* Shadows */
+  /* 3D Shadows & Depth System */
   --shadow-sm: 0 1px 3px rgba(7, 58, 64, 0.06), 0 1px 2px rgba(7, 58, 64, 0.04);
-  --shadow-md: 0 4px 12px rgba(7, 58, 64, 0.08), 0 2px 4px rgba(7, 58, 64, 0.04);
-  --shadow-lg: 0 10px 25px -4px rgba(7, 58, 64, 0.12), 0 6px 12px -3px rgba(7, 58, 64, 0.06);
-  --shadow-xl: 0 20px 35px -5px rgba(7, 58, 64, 0.18), 0 10px 16px -4px rgba(7, 58, 64, 0.08);
-  --shadow-teal: 0 8px 20px rgba(24, 181, 154, 0.3);
+  --shadow-md: 0 4px 14px rgba(7, 58, 64, 0.08), 0 2px 4px rgba(7, 58, 64, 0.04);
+  --shadow-lg: 0 10px 28px -4px rgba(7, 58, 64, 0.12), 0 6px 14px -3px rgba(7, 58, 64, 0.06);
+  --shadow-xl: 0 20px 40px -6px rgba(7, 58, 64, 0.2), 0 10px 20px -5px rgba(7, 58, 64, 0.1);
+  --shadow-card-3d: 0 15px 35px -5px rgba(7, 58, 64, 0.14), 0 8px 16px -4px rgba(24, 181, 154, 0.1);
+  --shadow-btn-3d: 0 4px 0 #0E7F6B, 0 8px 18px rgba(24, 181, 154, 0.35);
+  --shadow-btn-3d-pressed: 0 1px 0 #0E7F6B, 0 3px 8px rgba(24, 181, 154, 0.25);
 
   /* Typography */
   --font-family-sans: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-family-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 
   /* Border Radii */
+  --radius-xs: 4px;
   --radius-sm: 6px;
   --radius-md: 10px;
   --radius-lg: 16px;
@@ -57,13 +62,13 @@
   --radius-full: 9999px;
 
   /* Transitions & Motion */
-  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-normal: 250ms cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-slow: 350ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-fast: 140ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 240ms cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-smooth: 400ms cubic-bezier(0.16, 1, 0.3, 1);
 
   /* Layout Containers */
   --container-max-width: 1280px;
-  --header-height: 72px;
+  --header-height: 70px;
 }
 
 /* Box Sizing & Document Reset */
@@ -115,7 +120,7 @@ a {
   text-decoration: none;
 }
 
-img, svg {
+img, svg, video {
   display: block;
   max-width: 100%;
 }
@@ -129,6 +134,7 @@ button {
   cursor: pointer;
   border: none;
   background: transparent;
+  user-select: none;
 }
 
 /* Accessible Focus Outlines */
@@ -158,6 +164,100 @@ button {
   margin-right: auto;
   padding-left: 1.5rem;
   padding-right: 1.5rem;
+}
+
+/* ==========================================================================
+   3D TACTILE BUTTON INTERACTIONS (UNIVERSAL)
+   ========================================================================== */
+
+.btn-tactile {
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast), background-color var(--transition-fast), border-color var(--transition-fast);
+  will-change: transform, box-shadow;
+}
+
+.btn-tactile:hover {
+  transform: translateY(-2px);
+}
+
+.btn-tactile:active {
+  transform: translateY(1px) scale(0.98);
+}
+
+/* Primary Button 3D Styling */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.8rem 1.65rem;
+  background-color: var(--color-teal);
+  color: var(--color-deep-blue);
+  font-size: 0.925rem;
+  font-weight: 700;
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: var(--shadow-btn-3d);
+  transition: all var(--transition-fast);
+}
+
+.btn-primary:hover {
+  background-color: #20d5b5;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 0 #0E7F6B, 0 12px 24px rgba(24, 181, 154, 0.45);
+}
+
+.btn-primary:active {
+  transform: translateY(2px);
+  box-shadow: var(--shadow-btn-3d-pressed);
+}
+
+/* Secondary Button 3D Styling */
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.8rem 1.45rem;
+  background-color: rgba(255, 255, 255, 0.08);
+  color: var(--color-white);
+  font-size: 0.925rem;
+  font-weight: 600;
+  border: 1.5px solid rgba(255, 255, 255, 0.22);
+  border-radius: var(--radius-md);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 3px 0 rgba(7, 58, 64, 0.4), 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: all var(--transition-fast);
+}
+
+.btn-secondary:hover {
+  background-color: rgba(255, 255, 255, 0.18);
+  border-color: rgba(255, 255, 255, 0.45);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 0 rgba(7, 58, 64, 0.4), 0 8px 18px rgba(0, 0, 0, 0.2);
+}
+
+.btn-secondary:active {
+  transform: translateY(1px);
+  box-shadow: 0 1px 0 rgba(7, 58, 64, 0.4);
+}
+
+/* Custom Scrollbar for Smooth Internal Scrolling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #EAF7F4;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #B6DFD6;
+  border-radius: var(--radius-full);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-teal);
 }
 
 /* Reduced Motion for Accessibility */
