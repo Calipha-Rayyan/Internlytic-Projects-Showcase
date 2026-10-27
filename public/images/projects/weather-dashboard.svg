@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" width="640" height="360" fill="none">
+  <defs>
+    <linearGradient id="weaBg" x1="0" y1="0" x2="640" y2="360" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#073A40" />
+      <stop offset="100%" stop-color="#0D4C54" />
+    </linearGradient>
+    <linearGradient id="sunGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#FDE047" />
+      <stop offset="100%" stop-color="#F59E0B" />
+    </linearGradient>
+  </defs>
+  <rect width="640" height="360" fill="url(#weaBg)" />
+
+  <g transform="translate(60, 45)">
+    <!-- Window Frame -->
+    <rect width="520" height="270" rx="14" fill="#0A272C" stroke="#18B59A" stroke-width="1.5" stroke-opacity="0.3" />
+    <rect width="520" height="36" rx="14" fill="#061A1D" />
+    <circle cx="20" cy="18" r="4.5" fill="#EF4444" opacity="0.8" />
+    <circle cx="34" cy="18" r="4.5" fill="#F59E0B" opacity="0.8" />
+    <circle cx="48" cy="18" r="4.5" fill="#10B981" opacity="0.8" />
+    <text x="260" y="23" font-family="'Plus Jakarta Sans', sans-serif" font-size="11" font-weight="600" fill="#8CE1D3" text-anchor="middle">GeoWeather Doppler &amp; Forecast Terminal</text>
+
+    <!-- Current City Card -->
+    <g transform="translate(25, 52)">
+      <rect width="210" height="200" rx="10" fill="#113B41" />
+      <text x="20" y="32" font-family="'Plus Jakarta Sans', sans-serif" font-size="16" font-weight="700" fill="#FFFFFF">San Francisco</text>
+      <text x="20" y="50" font-family="'Plus Jakarta Sans', sans-serif" font-size="11" fill="#8CE1D3">Clear Skies - Moderate Breeze</text>
+
+      <!-- Weather Icon Art -->
+      <circle cx="60" cy="105" r="28" fill="url(#sunGrad)" />
+      <path d="M50 115 C45 115 40 120 40 126 C40 132 46 136 53 136 H120 C128 136 134 130 134 122 C134 115 129 110 122 109 C121 98 112 90 100 90 C92 90 85 94 81 100 C78 98 74 97 70 97 C60 97 52 105 50 115 Z" fill="#EAF7F4" fill-opacity="0.9" />
+
+      <text x="145" y="112" font-family="'Plus Jakarta Sans', sans-serif" font-size="34" font-weight="800" fill="#FFFFFF">72°</text>
+      <text x="145" y="130" font-family="'Plus Jakarta Sans', sans-serif" font-size="11" fill="#22E4C2">High: 76° Low: 58°</text>
+
+      <!-- Secondary indicators -->
+      <rect x="15" y="152" width="180" height="36" rx="6" fill="#0C2D32" />
+      <text x="25" y="174" font-family="'Plus Jakarta Sans', sans-serif" font-size="10" fill="#99D5CB">AQI: 24 (Good)</text>
+      <text x="120" y="174" font-family="'Plus Jakarta Sans', sans-serif" font-size="10" fill="#99D5CB">Humidity: 48%</text>
+    </g>
+
+    <!-- Hourly Trend and Map Preview -->
+    <g transform="translate(250, 52)">
+      <!-- Radar Map preview -->
+      <rect width="245" height="100" rx="8" fill="#082024" stroke="#18B59A" stroke-width="1" stroke-opacity="0.4" />
+      <path d="M 20 60 Q 70 20, 130 40 T 225 30" fill="none" stroke="#22E4C2" stroke-width="2" />
+      <circle cx="130" cy="40" r="18" fill="#18B59A" fill-opacity="0.3" stroke="#22E4C2" stroke-width="1.5" />
+      <circle cx="130" cy="40" r="6" fill="#FFFFFF" />
+      <text x="15" y="22" font-family="'Plus Jakarta Sans', sans-serif" font-size="10" font-weight="700" fill="#22E4C2">DOPPLER PRECIPITATION MAP</text>
+
+      <!-- 4-Day Forecast Columns -->
+      <g transform="translate(0, 115)">
+        <rect x="0" y="0" width="55" height="85" rx="6" fill="#113B41" />
+        <text x="27" y="20" font-family="'Plus Jakarta Sans', sans-serif" font-size="9" font-weight="600" fill="#8CE1D3" text-anchor="middle">MON</text>
+        <circle cx="27" cy="42" r="10" fill="url(#sunGrad)" />
+        <text x="27" y="70" font-family="'Plus Jakarta Sans', sans-serif" font-size="11" font-weight="700" fill="#FFFFFF" text-anchor="middle">74°</text>
+
+        <rect x="63" y="0" width="55" height="85" rx="6" fill="#113B41" />
+        <text x="90" y="20" font-family="'Plus Jakarta Sans', sans-serif" font-size="9" font-weight="600" fill="#8CE1D3" text-anchor="middle">TUE</text>
+        <circle cx="90" cy="42" r="10" fill="#22E4C2" opacity="0.8" />
+        <text x="90" y="70" font-family="'Plus Jakarta Sans', sans-serif" font-size="11" font-weight="700" fill="#FFFFFF" text-anchor="middle">68°</text>
+
+        <rect x="126" y="0" width="55" height="85" rx="6" fill="#113B41" />
+        <text x="153" y="20" font-family="'Plus Jakarta Sans', sans-serif" font-size="9" font-weight="600" fill="#8CE1D3" text-anchor="middle">WED</text>
+        <circle cx="153" cy="42" r="10" fill="url(#sunGrad)" />
+        <text x="153" y="70" font-family="'Plus Jakarta Sans', sans-serif" font-size="11" font-weight="700" fill="#FFFFFF" text-anchor="middle">71°</text>
+
+        <rect x="189" y="0" width="55" height="85" rx="6" fill="#113B41" />
+        <text x="216" y="20" font-family="'Plus Jakarta Sans', sans-serif" font-size="9" font-weight="600" fill="#8CE1D3" text-anchor="middle">THU</text>
+        <circle cx="216" cy="42" r="10" fill="url(#sunGrad)" />
+        <text x="216" y="70" font-family="'Plus Jakarta Sans', sans-serif" font-size="11" font-weight="700" fill="#FFFFFF" text-anchor="middle">75°</text>
+      </g>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" width="640" height="360" fill="none">
+  <defs>
+    <linearGradient id="portBg" x1="0" y1="0" x2="640" y2="360" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#08373D" />
+      <stop offset="100%" stop-color="#0F525C" />
+    </linearGradient>
+  </defs>
+  <rect width="640" height="360" fill="url(#portBg)" />
+  
+  <g transform="translate(60, 45)">
+    <!-- Main Window Canvas -->
+    <rect width="520" height="270" rx="14" fill="#0C2529" stroke="#18B59A" stroke-width="1.5" stroke-opacity="0.3" />
+    <rect width="520" height="36" rx="14" fill="#061B1E" />
+    <circle cx="20" cy="18" r="4.5" fill="#EF4444" opacity="0.8" />
+    <circle cx="34" cy="18" r="4.5" fill="#F59E0B" opacity="0.8" />
+    <circle cx="48" cy="18" r="4.5" fill="#10B981" opacity="0.8" />
+    <text x="260" y="23" font-family="'Plus Jakarta Sans', sans-serif" font-size="11" font-weight="600" fill="#8CE1D3" text-anchor="middle">Devfolio Studio | Drag &amp; Drop Component Builder</text>
+
+    <!-- Component Palette (Left) -->
+    <rect x="20" y="52" width="130" height="200" rx="8" fill="#123E45" />
+    <text x="32" y="74" font-family="'Plus Jakarta Sans', sans-serif" font-size="10.5" font-weight="700" fill="#22E4C2">COMPONENTS</text>
+    <rect x="30" y="86" width="110" height="28" rx="6" fill="#1B555E" />
+    <text x="42" y="104" font-family="'Plus Jakarta Sans', sans-serif" font-size="9.5" fill="#FFFFFF">Hero Header</text>
+    <rect x="30" y="122" width="110" height="28" rx="6" fill="#18B59A" fill-opacity="0.25" stroke="#18B59A" stroke-width="1" />
+    <text x="42" y="140" font-family="'Plus Jakarta Sans', sans-serif" font-size="9.5" font-weight="600" fill="#22E4C2">Project Grid</text>
+    <rect x="30" y="158" width="110" height="28" rx="6" fill="#1B555E" />
+    <text x="42" y="176" font-family="'Plus Jakarta Sans', sans-serif" font-size="9.5" fill="#FFFFFF">Tech Badges</text>
+    <rect x="30" y="194" width="110" height="28" rx="6" fill="#1B555E" />
+    <text x="42" y="212" font-family="'Plus Jakarta Sans', sans-serif" font-size="9.5" fill="#FFFFFF">Contact Form</text>
+
+    <!-- Visual Page Preview (Right) -->
+    <rect x="165" y="52" width="335" height="200" rx="8" fill="#082024" />
+    <!-- Mini Simulated Portfolio Site -->
+    <g transform="translate(180, 68)">
+      <circle cx="20" cy="20" r="16" fill="#18B59A" />
+      <text x="45" y="18" font-family="'Plus Jakarta Sans', sans-serif" font-size="11" font-weight="700" fill="#FFFFFF">Alex Morgan</text>
+      <text x="45" y="30" font-family="'Plus Jakarta Sans', sans-serif" font-size="9" fill="#8CE1D3">Senior Frontend &amp; UI Architect</text>
+      
+      <!-- Mini Cards -->
+      <rect x="0" y="48" width="145" height="65" rx="6" fill="#123E45" stroke="#18B59A" stroke-width="1" />
+      <rect x="10" y="58" width="80" height="8" rx="4" fill="#22E4C2" />
+      <rect x="10" y="72" width="125" height="6" rx="3" fill="#8CE1D3" opacity="0.4" />
+      <rect x="10" y="82" width="95" height="6" rx="3" fill="#8CE1D3" opacity="0.4" />
+      <rect x="10" y="96" width="40" height="10" rx="5" fill="#18B59A" />
+
+      <rect x="155" y="48" width="145" height="65" rx="6" fill="#123E45" stroke="#18B59A" stroke-width="1" stroke-opacity="0.4" />
+      <rect x="165" y="58" width="80" height="8" rx="4" fill="#22E4C2" />
+      <rect x="165" y="72" width="125" height="6" rx="3" fill="#8CE1D3" opacity="0.4" />
+      <rect x="165" y="82" width="95" height="6" rx="3" fill="#8CE1D3" opacity="0.4" />
+      <rect x="165" y="96" width="40" height="10" rx="5" fill="#18B59A" />
+
+      <rect x="0" y="122" width="300" height="42" rx="6" fill="#123E45" />
+      <text x="12" y="146" font-family="'Plus Jakarta Sans', sans-serif" font-size="10" font-weight="600" fill="#FFFFFF">Selected Stack: React, Next.js, CSS Architecture, Accessibility</text>
+    </g>
+  </g>
+</svg>
