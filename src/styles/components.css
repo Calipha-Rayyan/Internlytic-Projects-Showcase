@@ -3,17 +3,17 @@
    ========================================================================== */
 
 /* --------------------------------------------------------------------------
-   1. NAVIGATION HEADER & MOBILE DRAWER (Light Brand Surface matching Real Logo)
+   1. NAVIGATION HEADER & MOBILE DRAWER (Dark Brand Surface matching Real Logo)
    -------------------------------------------------------------------------- */
 .navbar,
-.navbar.light-brand-navbar {
+.navbar.brand-navbar {
   position: sticky;
   top: 0;
   z-index: 60;
   height: var(--header-height);
-  background-color: #FFFFFF;
-  border-bottom: 1.5px solid rgba(24, 181, 154, 0.2);
-  box-shadow: 0 2px 14px rgba(7, 58, 64, 0.06);
+  background-color: var(--color-deep-blue);
+  border-bottom: 1.5px solid rgba(24, 181, 154, 0.28);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   transition: background-color var(--transition-normal);
@@ -34,7 +34,7 @@
 }
 
 .brand-logo-img {
-  height: 44px;
+  height: 48px;
   width: auto;
   object-fit: contain;
   transition: transform var(--transition-fast);
@@ -48,11 +48,11 @@
 .navbar-nav.desktop-nav {
   display: flex;
   align-items: center;
-  gap: 1.25rem;
+  gap: 1.35rem;
 }
 
 .nav-link {
-  color: var(--color-deep-blue);
+  color: rgba(255, 255, 255, 0.9);
   font-size: 0.9rem;
   font-weight: 700;
   padding: 0.45rem 0.85rem;
@@ -63,7 +63,7 @@
 
 .nav-link:hover {
   color: var(--color-teal);
-  background-color: rgba(24, 181, 154, 0.08);
+  background-color: rgba(24, 181, 154, 0.12);
 }
 
 .nav-right-actions {
@@ -108,11 +108,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--color-deep-blue);
+  color: var(--color-white);
   padding: 0.45rem;
   border-radius: var(--radius-md);
-  background: rgba(24, 181, 154, 0.1);
-  border: 1.5px solid rgba(24, 181, 154, 0.3);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1.5px solid rgba(24, 181, 154, 0.35);
   cursor: pointer;
   transition: all var(--transition-fast);
 }
@@ -123,16 +123,17 @@
 }
 
 
-.mobile-drawer.light-drawer {
+
+.mobile-drawer {
   position: fixed;
   top: 0;
   right: 0;
   bottom: 0;
   width: 100%;
   max-width: 320px;
-  background-color: #FFFFFF;
+  background-color: var(--color-deep-blue);
   border-left: 2px solid rgba(24, 181, 154, 0.3);
-  box-shadow: -8px 0 32px rgba(7, 58, 64, 0.2);
+  box-shadow: -8px 0 32px rgba(0, 0, 0, 0.5);
   padding: 1.5rem;
   display: flex;
   flex-direction: column;
@@ -150,12 +151,12 @@
   align-items: center;
   justify-content: space-between;
   padding-bottom: 1.25rem;
-  border-bottom: 1.5px solid rgba(24, 181, 154, 0.2);
+  border-bottom: 1.5px solid rgba(24, 181, 154, 0.25);
   margin-bottom: 1.5rem;
 }
 
 .drawer-logo-img {
-  height: 38px;
+  height: 44px;
   width: auto;
   object-fit: contain;
 }
@@ -164,11 +165,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--color-deep-blue);
+  color: #FFFFFF;
   padding: 0.45rem;
   border-radius: var(--radius-full);
-  background: rgba(24, 181, 154, 0.1);
-  border: none;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(24, 181, 154, 0.3);
   cursor: pointer;
   transition: all var(--transition-fast);
 }
@@ -190,19 +191,19 @@
   align-items: center;
   width: 100%;
   padding: 0.85rem 1rem;
-  color: var(--color-deep-blue);
+  color: #FFFFFF;
   font-size: 1rem;
   font-weight: 700;
   border-radius: var(--radius-md);
-  background-color: var(--color-surface-muted);
-  border: 1px solid var(--color-border-main);
+  background-color: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(24, 181, 154, 0.2);
   text-decoration: none;
   transition: all var(--transition-fast);
 }
 
 .mobile-nav-link:hover,
 .mobile-nav-link:active {
-  background-color: #EAF7F4;
+  background-color: rgba(24, 181, 154, 0.2);
   color: var(--color-teal);
   border-color: var(--color-teal);
   transform: translateX(4px);
@@ -1910,70 +1911,111 @@
   box-shadow: 0 1px 0 currentColor !important;
 }
 
-/* Footer Official Logo Surface & Honest Sample Disclosure */
-.footer-logo-surface {
-  display: inline-flex;
-  align-items: center;
-  background-color: #FFFFFF;
-  padding: 0.5rem 0.95rem;
-  border-radius: var(--radius-md);
-  border: 1.5px solid rgba(24, 181, 154, 0.35);
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+/* Footer Official Brand Direct Presentation */
+.footer-three-cols {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr;
+  gap: 3.5rem;
+}
+
+.footer-brand-logo-wrap {
   margin-bottom: 1.25rem;
 }
 
 .footer-brand-logo {
-  height: 42px;
+  height: 56px;
   width: auto;
   object-fit: contain;
 }
 
-.footer-sample-disclosure {
-  display: inline-flex;
-  align-items: flex-start;
-  gap: 0.55rem;
-  padding: 0.65rem 0.95rem;
-  background-color: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(24, 181, 154, 0.25);
-  border-radius: var(--radius-sm);
-  font-size: 0.775rem;
-  color: var(--color-text-inverse-muted);
-  line-height: 1.5;
-  margin-top: 1rem;
+/* --------------------------------------------------------------------------
+   FLOATING 4D DIMENSIONAL BACK TO TOP ACTION
+   -------------------------------------------------------------------------- */
+.back-to-top-floating-container {
+  position: fixed;
+  bottom: 2.25rem;
+  right: 2.25rem;
+  z-index: 99;
 }
 
-.footer-sample-disclosure .disclosure-icon {
-  flex-shrink: 0;
-  margin-top: 0.15rem;
-  color: var(--color-teal);
-}
-
-.footer-info-text {
-  font-size: 0.85rem;
-  color: var(--color-text-inverse-muted);
-  line-height: 1.55;
-  margin-bottom: 1rem;
-}
-
-.footer-status-pill {
-  display: inline-flex;
+.back-to-top-4d-box {
+  position: relative;
+  display: flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.3rem 0.75rem;
-  background-color: rgba(24, 181, 154, 0.12);
-  border: 1px solid rgba(24, 181, 154, 0.35);
-  border-radius: var(--radius-full);
-  font-size: 0.75rem;
-  font-weight: 700;
-  color: #38efce;
+  justify-content: center;
+  background: linear-gradient(135deg, #073A40 0%, #0d4d55 100%);
+  border: 1.5px solid #18B59A;
+  border-radius: 14px;
+  padding: 0.65rem 0.95rem;
+  box-shadow: 
+    0 12px 28px -4px rgba(7, 58, 64, 0.45),
+    0 4px 12px rgba(24, 181, 154, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.35);
+  cursor: pointer;
+  transition: all 180ms cubic-bezier(0.16, 1, 0.3, 1);
+  animation: float4DBox 3.5s ease-in-out infinite, entrance4DPop 300ms cubic-bezier(0.16, 1, 0.3, 1);
+  transform-style: preserve-3d;
 }
 
-.status-dot-pulse {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background-color: #18B59A;
-  box-shadow: 0 0 8px #18B59A;
+.btn-4d-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.2rem;
+}
+
+.arrow-4d-icon {
+  color: #38efce;
+  transition: transform var(--transition-fast);
+}
+
+.btn-4d-label {
+  font-size: 0.68rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #FFFFFF;
+}
+
+.back-to-top-4d-box:hover {
+  transform: translateY(-6px) scale(1.06);
+  background: linear-gradient(135deg, #0c4d55 0%, #18B59A 100%);
+  box-shadow: 
+    0 18px 36px -4px rgba(7, 58, 64, 0.6),
+    0 8px 20px rgba(24, 181, 154, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  border-color: #38efce;
+}
+
+.back-to-top-4d-box:hover .arrow-4d-icon {
+  transform: translateY(-3px);
+  color: #FFFFFF;
+}
+
+.back-to-top-4d-box:active {
+  transform: translateY(2px) scale(0.96) !important;
+  box-shadow: 0 4px 10px rgba(7, 58, 64, 0.4) !important;
+}
+
+@keyframes float4DBox {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes entrance4DPop {
+  from {
+    opacity: 0;
+    transform: scale(0.8) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
 }
 
 /* 3D Project Details Modal */
@@ -1998,5 +2040,6 @@
   font-weight: 700;
   color: var(--color-deep-blue);
 }
+
 
 

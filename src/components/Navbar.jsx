@@ -26,16 +26,19 @@ export default function Navbar({ onExploreClick }) {
   };
 
   return (
-    <header className="navbar light-brand-navbar" role="banner">
+    <header className="navbar brand-navbar" role="banner">
       <div className="container navbar-container">
         {/* Official Brand Logo with Seamless Background Integration */}
         <a href="/" className="brand-wrapper" aria-label="Internlytic Technologies Projects Showcase">
           <img
-            src="/logo/internlytic-real-logo.png"
+            src="/logo/internlytic-dark-transparent.png"
             alt="Internlytic Technologies"
             className="brand-logo-img"
-            width="160"
-            height="48"
+            width="170"
+            height="62"
+            onError={(e) => {
+              e.target.src = '/logo/internlytic-dark-logo.png';
+            }}
           />
         </a>
 
@@ -115,14 +118,17 @@ export default function Navbar({ onExploreClick }) {
 
       {/* Mobile Navigation Drawer */}
       {mobileMenuOpen && (
-        <div className="mobile-drawer light-drawer" role="dialog" aria-modal="true" aria-label="Mobile Navigation Menu">
+        <div className="mobile-drawer" role="dialog" aria-modal="true" aria-label="Mobile Navigation Menu">
           <div className="mobile-drawer-header">
             <img
-              src="/logo/internlytic-real-logo.png"
+              src="/logo/internlytic-dark-transparent.png"
               alt="Internlytic Technologies"
               className="drawer-logo-img"
-              width="140"
-              height="42"
+              width="150"
+              height="55"
+              onError={(e) => {
+                e.target.src = '/logo/internlytic-dark-logo.png';
+              }}
             />
             <button
               type="button"

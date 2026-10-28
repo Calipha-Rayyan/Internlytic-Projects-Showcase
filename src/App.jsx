@@ -9,6 +9,7 @@ import LoadingState from './components/LoadingState';
 import EmptyState from './components/EmptyState';
 import ErrorState from './components/ErrorState';
 import Footer from './components/Footer';
+import BackToTopButton from './components/BackToTopButton';
 
 import { fetchProjects, computeShowcaseMetrics } from './services/projectService';
 import { useProjectFilters } from './hooks/useProjectFilters';
@@ -72,10 +73,7 @@ export default function App() {
 
       <main id="main-content">
         {/* Hero Section with Genuine Video Motion & Interactive 3D Stage */}
-        <Hero
-          metrics={showcaseMetrics}
-          onRefreshProjects={loadProjectData}
-        />
+        <Hero metrics={showcaseMetrics} />
 
         {/* 3D Search & Filter Command Deck */}
         <section className="toolbar-section" id="filter-toolbar">
@@ -158,7 +156,7 @@ export default function App() {
         />
       )}
 
-      {/* Footer matching Official Brand Palette with Discreet Honest Disclaimer */}
+      {/* Footer matching Official Brand Palette */}
       <Footer onSelectTrack={(track) => {
         setSelectedTrack(track);
         const el = document.getElementById('gallery-section');
@@ -167,6 +165,9 @@ export default function App() {
           window.scrollTo({ top: y, behavior: 'smooth' });
         }
       }} />
+
+      {/* Floating 4D Dimensional Back to Top Button */}
+      <BackToTopButton />
     </div>
   );
 }

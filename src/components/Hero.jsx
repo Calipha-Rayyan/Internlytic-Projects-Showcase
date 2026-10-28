@@ -1,12 +1,11 @@
 import React, { useRef, useEffect, useState } from 'react';
-import { RefreshCw, ArrowDown, Sparkles, Compass } from 'lucide-react';
+import { ArrowDown, Compass } from 'lucide-react';
 import Hero3DStage from './Hero3DStage';
 
-export default function Hero({ metrics = { totalProjects: 10, totalTracks: 6, distinctTechnologies: 24 }, onRefreshProjects }) {
+export default function Hero({ metrics = { totalProjects: 10, totalTracks: 6, distinctTechnologies: 24 } }) {
   const videoRef = useRef(null);
   const heroRef = useRef(null);
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
-  const [isRefreshing, setIsRefreshing] = useState(false);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
 
   // Check prefers-reduced-motion
@@ -61,14 +60,6 @@ export default function Hero({ metrics = { totalProjects: 10, totalTracks: 6, di
       document.removeEventListener('visibilitychange', handleVisibility);
     };
   }, [prefersReducedMotion]);
-
-  const handleRefreshClick = () => {
-    setIsRefreshing(true);
-    if (onRefreshProjects) {
-      onRefreshProjects();
-    }
-    setTimeout(() => setIsRefreshing(false), 800);
-  };
 
   const scrollToGallery = (e) => {
     e.preventDefault();
@@ -126,23 +117,12 @@ export default function Hero({ metrics = { totalProjects: 10, totalTracks: 6, di
           </p>
 
           <div className="hero-actions">
-            {/* Real website's Refresh Projects pill button */}
-            <button
-              type="button"
-              onClick={handleRefreshClick}
-              className="refresh-projects-btn btn-3d-lift"
-              aria-label="Refresh project showcase list"
-            >
-              <RefreshCw size={16} className={isRefreshing ? 'spin-anim' : ''} />
-              <span>Refresh projects</span>
-            </button>
-
             <a
               href="#gallery-section"
               onClick={scrollToGallery}
-              className="btn-primary hero-btn-3d"
+              className="btn-primary hero-btn-3d btn-tactile"
             >
-              <span>Explore Gallery</span>
+              <span>Explore Projects Gallery</span>
               <ArrowDown size={17} />
             </a>
           </div>

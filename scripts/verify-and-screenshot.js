@@ -304,9 +304,9 @@ async function runComprehensiveVerification() {
     await new Promise(r => setTimeout(r, 350));
 
     // ------------------------------------------------------------------------
-    // TEST 6: Redesigned Footer, Brand Surface & Back to Top Control
+    // TEST 6: Redesigned Footer, Brand Surface & Floating 4D Back to Top Control
     // ------------------------------------------------------------------------
-    console.log('\n⚓ [6/7] Testing Redesigned Footer, Logo Card & Back to Top Action...');
+    console.log('\n⚓ [6/7] Testing Clean Footer, Dark Brand Surface & Floating 4D Back to Top Action...');
     const footerEl = await page.$('.footer');
     await page.evaluate((el) => el.scrollIntoView({ behavior: 'instant' }), footerEl);
     await new Promise(r => setTimeout(r, 400));
@@ -314,17 +314,16 @@ async function runComprehensiveVerification() {
     const footerCheck = await page.evaluate(() => {
       const notice = document.querySelector('.footer-sample-disclosure');
       const copyright = document.querySelector('.footer-copyright');
-      const backToTop = document.querySelector('.footer-back-to-top');
-      const logoSurface = document.querySelector('.footer-logo-surface');
+      const backToTop = document.querySelector('.back-to-top-4d-box');
+      const brandLogo = document.querySelector('.footer-brand-logo');
       return {
         hasSampleDisclosure: notice !== null,
-        disclosureText: notice ? notice.textContent.trim() : null,
-        hasLogoSurface: logoSurface !== null,
+        hasBrandLogo: brandLogo !== null,
         copyrightText: copyright ? copyright.textContent.trim() : null,
         hasBackToTopBtn: backToTop !== null
       };
     });
-    console.log('   Footer checks:', footerCheck);
+    console.log('   Footer & 4D button checks:', footerCheck);
 
     // Capture Screenshot 7: Footer directly
     await footerEl.screenshot({
@@ -332,13 +331,13 @@ async function runComprehensiveVerification() {
     });
     console.log('   ✅ Captured 07-footer-and-back-to-top.png');
 
-    // Test Back to Top Action
-    const backToTopBtn = await page.$('.footer-back-to-top');
+    // Test Floating 4D Back to Top Action
+    const backToTopBtn = await page.$('.back-to-top-4d-box');
     if (backToTopBtn) {
       await backToTopBtn.click();
       await new Promise(r => setTimeout(r, 1000));
       const scrollY = await page.evaluate(() => window.pageYOffset || document.documentElement.scrollTop);
-      console.log(`   Back to Top scrolled successfully (scrollY = ${scrollY}): ${scrollY < 60 ? 'PASS' : 'FAIL'}`);
+      console.log(`   Floating 4D Back to Top scrolled successfully (scrollY = ${scrollY}): ${scrollY < 60 ? 'PASS' : 'FAIL'}`);
     }
 
     // ------------------------------------------------------------------------
@@ -364,7 +363,7 @@ async function runComprehensiveVerification() {
     if (menuBtn) {
       await menuBtn.click();
       await new Promise(r => setTimeout(r, 250));
-      const drawer = await page.$('.mobile-drawer.light-drawer');
+      const drawer = await page.$('.mobile-drawer');
       console.log(`   Mobile navigation drawer expands: ${drawer !== null ? 'PASS' : 'FAIL'}`);
       const closeBtn = await page.$('.drawer-close-btn');
       if (closeBtn) await closeBtn.click();
