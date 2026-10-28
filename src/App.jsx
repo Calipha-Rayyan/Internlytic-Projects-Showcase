@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
+import TopProjectsSection from './components/TopProjectsSection';
 import SearchBar from './components/SearchBar';
 import FilterControls from './components/FilterControls';
 import ProjectsGrid from './components/ProjectsGrid';
@@ -24,7 +25,7 @@ export default function App() {
     setIsLoading(true);
     setLoadError(null);
     try {
-      const data = await fetchProjects({ delayMs: 220 });
+      const data = await fetchProjects({ delayMs: 180 });
       setProjects(data);
       setIsLoading(false);
     } catch (err) {
@@ -61,17 +62,33 @@ export default function App() {
 
   return (
     <div className="app-root">
-      {/* Navigation Header */}
+      {/* Navigation Header with Real Logo & Official Company Navigation */}
       <Navbar />
 
       <main id="main-content">
-        {/* Two-Column Hero Section with 3D Scene and Video Background */}
-        <Hero metrics={showcaseMetrics} />
+        {/* Hero Section with Looping Video & Interactive 3D Stage */}
+        <Hero
+          metrics={showcaseMetrics}
+          onRefreshProjects={loadProjectData}
+        />
 
-        {/* Search & Filter Toolbar Section */}
-        <section className="toolbar-section">
+        {/* Featured "Top 5 Intern Projects" Section (Original Company Concept from Video) */}
+        {!isLoading && !loadError && (
+          <TopProjectsSection
+            projects={projects.slice(0, 5)}
+            onOpenDetails={setSelectedProject}
+          />
+        )}
+
+        {/* 3D Search & Filter Command Deck */}
+        <section className="toolbar-section" id="all-projects-section">
           <div className="container">
-            <div className="toolbar-card">
+            <div className="section-title-wrapper">
+              <h2 className="all-projects-heading">All Projects</h2>
+              <p className="all-projects-sub">Explore and filter across all internship tracks and technologies.</p>
+            </div>
+
+            <div className="toolbar-card toolbar-3d-deck">
               <SearchBar
                 searchQuery={searchQuery}
                 onSearchChange={setSearchQuery}
@@ -94,7 +111,7 @@ export default function App() {
           </div>
         </section>
 
-        {/* Projects Gallery Section */}
+        {/* 3D Projects Showcase Gallery */}
         <section
           id="gallery-section"
           className="gallery-section"
@@ -134,7 +151,7 @@ export default function App() {
         </section>
       </main>
 
-      {/* Project Details Modal */}
+      {/* 3D Project Details Modal */}
       {selectedProject && (
         <ProjectDetailsModal
           project={selectedProject}
@@ -142,7 +159,7 @@ export default function App() {
         />
       )}
 
-      {/* Footer */}
+      {/* Footer matching Original Company Architecture */}
       <Footer />
     </div>
   );

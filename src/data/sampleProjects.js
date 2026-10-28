@@ -134,6 +134,79 @@ export const SAMPLE_PROJECTS = [
   }
 ];
 
+export const TOP_5_INTERN_PROJECTS = [
+  {
+    id: "top-001",
+    rank: 1,
+    internName: "Fatima Ahmad",
+    internId: "INT-2026-000042",
+    projectTitle: "Personal Portfolio Website",
+    track: "Web Development",
+    description: "A high-performance personal portfolio website built with modern responsive design, interactive animations, and optimized showcase modules for creative web engineering.",
+    thumbnailUrl: "/images/projects/portfolio-builder.svg",
+    liveUrl: "https://fatimaahmadportfolio.vercel.app/",
+    githubUrl: null,
+    technologies: ["React", "CSS3", "JavaScript", "Vite", "Responsive Design"],
+    approvalStatus: "Top Ranked Intern"
+  },
+  {
+    id: "top-002",
+    rank: 2,
+    internName: "Sharmeen Mehboob",
+    internId: "INT-2026-000012",
+    projectTitle: "Internlytic Intern Portal — Mobile UI/UX Design Concept",
+    track: "UI/UX Design",
+    description: "An end-to-end mobile UX case study and high-fidelity prototype designed for seamless intern onboarding, daily attendance logging, and assignment management.",
+    thumbnailUrl: "/images/projects/smart-library.svg",
+    liveUrl: null,
+    githubUrl: null,
+    technologies: ["Figma", "Design Systems", "Prototyping", "User Research"],
+    approvalStatus: "Top Ranked Intern"
+  },
+  {
+    id: "top-003",
+    rank: 3,
+    internName: "iqra ismaeel",
+    internId: "INT-2026-000043",
+    projectTitle: "Internlytic AI Prompt Library",
+    track: "AI & Machine Learning",
+    description: "A curated intelligent prompt engineering library empowering developers and designers with pre-tested AI prompts, categories, and direct execution templates.",
+    thumbnailUrl: "/images/projects/ai-study-planner.svg",
+    liveUrl: null,
+    githubUrl: null,
+    technologies: ["React", "FastAPI", "Prompt Engineering", "Tailwind CSS"],
+    approvalStatus: "Top Ranked Intern"
+  },
+  {
+    id: "top-004",
+    rank: 4,
+    internName: "Muhammad Rayyan Bhatti",
+    internId: "INT-2026-000021",
+    projectTitle: "Internlytic Intern Portal UI/UX",
+    track: "UI/UX Design",
+    description: "A comprehensive web portal experience designed for interns and administrators with unified dashboard metrics, progress tracking, and certificate verification.",
+    thumbnailUrl: "/images/projects/ecommerce-analytics.svg",
+    liveUrl: null,
+    githubUrl: null,
+    technologies: ["Figma", "UI Architecture", "Design Tokens", "Wireframing"],
+    approvalStatus: "Top Ranked Intern"
+  },
+  {
+    id: "top-005",
+    rank: 5,
+    internName: "Fiza Ishaq",
+    internId: "INT-2026-000038",
+    projectTitle: "3D Interactive Personal Portfolio Website",
+    track: "Web Development",
+    description: "A cutting-edge 3D interactive portfolio featuring Three.js scenes, custom shaders, camera depth transitions, and immersive spatial web navigation.",
+    thumbnailUrl: "/images/projects/weather-dashboard.svg",
+    liveUrl: null,
+    githubUrl: null,
+    technologies: ["Three.js", "React", "WebGL", "GSAP", "3D Motion"],
+    approvalStatus: "Top Ranked Intern"
+  }
+];
+
 export const AVAILABLE_TRACKS = [
   "All Tracks",
   "Web Development",
@@ -143,3 +216,4 @@ export const AVAILABLE_TRACKS = [
   "UI/UX Design",
   "Cloud & DevOps"
 ];
+

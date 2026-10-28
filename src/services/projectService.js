@@ -9,7 +9,15 @@
  * local resolution with `supabase.from('showcase_projects').select('*')` with RLS policies.
  */
 
-import { SAMPLE_PROJECTS, AVAILABLE_TRACKS } from '../data/sampleProjects';
+import { SAMPLE_PROJECTS, TOP_5_INTERN_PROJECTS, AVAILABLE_TRACKS } from '../data/sampleProjects';
+
+/**
+ * Fetch top CEO-ranked showcase projects from the authentic company concept.
+ * @returns {Promise<Array>}
+ */
+export async function fetchTopProjects() {
+  return Promise.resolve(TOP_5_INTERN_PROJECTS);
+}
 
 /**
  * Fetch all showcase projects asynchronously.
@@ -25,8 +33,9 @@ export async function fetchProjects({ delayMs = 200 } = {}) {
         if (!SAMPLE_PROJECTS || !Array.isArray(SAMPLE_PROJECTS)) {
           throw new Error('Project dataset format is corrupted or unreachable.');
         }
-        // Deep copy to prevent external mutation
-        const sanitized = SAMPLE_PROJECTS.map((project) => ({
+        // Combine Top 5 Intern projects with showcase projects
+        const allProjects = [...TOP_5_INTERN_PROJECTS, ...SAMPLE_PROJECTS];
+        const sanitized = allProjects.map((project) => ({
           ...project,
           // Ensure guaranteed fallbacks for safe rendering
           id: String(project.id),

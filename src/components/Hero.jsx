@@ -1,11 +1,12 @@
 import React, { useRef, useEffect, useState } from 'react';
-import { ArrowDown, Filter, Sparkles } from 'lucide-react';
+import { RefreshCw, ArrowDown, Sparkles, Compass } from 'lucide-react';
 import Hero3DStage from './Hero3DStage';
 
-export default function Hero({ metrics = { totalProjects: 10, totalTracks: 6, distinctTechnologies: 24 } }) {
+export default function Hero({ metrics = { totalProjects: 10, totalTracks: 6, distinctTechnologies: 24 }, onRefreshProjects }) {
   const videoRef = useRef(null);
   const heroRef = useRef(null);
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
+  const [isRefreshing, setIsRefreshing] = useState(false);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
 
   // Check prefers-reduced-motion
@@ -17,7 +18,7 @@ export default function Hero({ metrics = { totalProjects: 10, totalTracks: 6, di
     return () => mediaQuery.removeEventListener('change', handler);
   }, []);
 
-  // Performance: Pause video when hero section is scrolled off-screen or tab is hidden
+  // Performance: Pause video when hero is scrolled off-screen or tab is hidden
   useEffect(() => {
     if (prefersReducedMotion) return;
 
@@ -61,25 +62,27 @@ export default function Hero({ metrics = { totalProjects: 10, totalTracks: 6, di
     };
   }, [prefersReducedMotion]);
 
-  const scrollToGallery = (e) => {
-    e.preventDefault();
-    const galleryEl = document.getElementById('gallery-section');
-    if (galleryEl) {
-      galleryEl.scrollIntoView({ behavior: 'smooth' });
+  const handleRefreshClick = () => {
+    setIsRefreshing(true);
+    if (onRefreshProjects) {
+      onRefreshProjects();
     }
+    setTimeout(() => setIsRefreshing(false), 800);
   };
 
-  const scrollToFilters = (e) => {
+  const scrollToGallery = (e) => {
     e.preventDefault();
-    const filterEl = document.getElementById('filter-toolbar');
-    if (filterEl) {
-      filterEl.scrollIntoView({ behavior: 'smooth' });
+    const el = document.getElementById('gallery-section');
+    if (el) {
+      const yOffset = -75;
+      const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      window.scrollTo({ top: y, behavior: 'smooth' });
     }
   };
 
   return (
-    <section ref={heroRef} className="hero-section" aria-labelledby="hero-heading">
-      {/* 1. Genuine Looping Video Animation Background */}
+    <section ref={heroRef} className="hero-section company-hero" aria-labelledby="hero-heading">
+      {/* 1. Looping Video Background */}
       <div className="hero-video-container" aria-hidden="true">
         {!prefersReducedMotion ? (
           <video
@@ -101,50 +104,50 @@ export default function Hero({ metrics = { totalProjects: 10, totalTracks: 6, di
             className="hero-video-bg loaded"
           />
         )}
-        {/* Controlled Overlay Scrim for Text Contrast */}
         <div className="hero-video-scrim" />
       </div>
 
-      {/* 2. Geometric Grid Pattern */}
       <div className="hero-grid-pattern" aria-hidden="true" />
 
-      {/* 3. Main Two-Column Hero Content */}
+      {/* 2. Main Two-Column Hero Content */}
       <div className="container hero-container">
-        {/* Left Column: Typography, Actions, and Dynamic Metrics */}
+        {/* Left Column matching original company website layout from video frame-2s.png */}
         <div className="hero-left-col">
-          <div className="hero-tag">
-            <Sparkles size={14} aria-hidden="true" />
-            <span>Internship Project Gallery</span>
+          <div className="company-eyebrow">
+            INTERNLYTIC TECHNOLOGIES
           </div>
 
           <h1 id="hero-heading" className="hero-title">
-            Discover. Explore. <span className="hero-title-accent">Build.</span>
+            Projects <span className="hero-title-accent">Showcase</span>
           </h1>
 
           <p className="hero-description">
-            Explore projects created by interns, discover new ideas, and see the technologies behind each project across AI, Web Development, Cloud, and Design.
+            Discover projects created by our talented interns across AI, Web Development, Cloud, and Design.
           </p>
 
           <div className="hero-actions">
+            {/* Real website's Refresh Projects pill button */}
+            <button
+              type="button"
+              onClick={handleRefreshClick}
+              className="refresh-projects-btn btn-3d-lift"
+              aria-label="Refresh project showcase list"
+            >
+              <RefreshCw size={16} className={isRefreshing ? 'spin-anim' : ''} />
+              <span>Refresh projects</span>
+            </button>
+
             <a
               href="#gallery-section"
               onClick={scrollToGallery}
-              className="btn-primary btn-tactile"
+              className="btn-primary hero-btn-3d"
             >
-              <span>Explore All Projects</span>
-              <ArrowDown size={18} aria-hidden="true" />
-            </a>
-            <a
-              href="#filter-toolbar"
-              onClick={scrollToFilters}
-              className="btn-secondary btn-tactile"
-            >
-              <Filter size={16} aria-hidden="true" />
-              <span>Filter by Track</span>
+              <span>Explore Gallery</span>
+              <ArrowDown size={17} />
             </a>
           </div>
 
-          {/* Dynamic Metrics (Honest, Computed directly from Data) */}
+          {/* Dynamic Showcase Metrics */}
           <div className="hero-stats" role="region" aria-label="Showcase Overview Metrics">
             <div className="hero-stat-item">
               <span className="hero-stat-value">{metrics.totalProjects || 10}</span>
@@ -156,7 +159,7 @@ export default function Hero({ metrics = { totalProjects: 10, totalTracks: 6, di
             </div>
             <div className="hero-stat-item">
               <span className="hero-stat-value">{metrics.distinctTechnologies || 20}+</span>
-              <span className="hero-stat-label">Tech Components</span>
+              <span className="hero-stat-label">Technologies</span>
             </div>
           </div>
         </div>

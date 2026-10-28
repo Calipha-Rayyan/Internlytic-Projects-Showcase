@@ -185,6 +185,15 @@
     flex-direction: column;
     align-items: flex-start;
   }
+
+  .top-projects-title {
+    font-size: 1.85rem;
+  }
+
+  .top-projects-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
 }
 
 /* --------------------------------------------------------------------------
@@ -307,6 +316,10 @@
 
   .card-link-icon-btn {
     order: 2;
+  }
+
+  .top-card-actions {
+    grid-template-columns: 1fr;
   }
 }
 

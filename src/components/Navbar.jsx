@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { Compass, Sparkles, Menu, X, Filter, FolderGit2 } from 'lucide-react';
+import { Menu, X, ChevronDown, Moon, Sun, ArrowUpRight } from 'lucide-react';
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(false);
 
   // Close mobile menu on resize to desktop
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth > 768 && mobileMenuOpen) {
+      if (window.innerWidth > 992 && mobileMenuOpen) {
         setMobileMenuOpen(false);
       }
     };
@@ -19,7 +20,6 @@ export default function Navbar() {
     setMobileMenuOpen(false);
     const el = document.getElementById(id);
     if (el) {
-      // Offset for sticky header
       const yOffset = -75;
       const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
       window.scrollTo({ top: y, behavior: 'smooth' });
@@ -27,64 +27,77 @@ export default function Navbar() {
   };
 
   return (
-    <header className="navbar" role="banner">
+    <header className="navbar official-navbar" role="banner">
       <div className="container navbar-container">
-        {/* Brand identity */}
+        {/* Real Company Logo (from Image 4) */}
         <a href="/" className="brand-wrapper" aria-label="Internlytic Technologies Home">
           <img
-            src="/logo/internlytic-logo.svg"
+            src="/logo/internlytic-real-logo.png"
             alt="Internlytic Technologies"
-            className="brand-logo-img"
-            width="240"
-            height="38"
+            className="brand-logo-img real-company-logo"
+            width="180"
+            height="46"
             onError={(e) => {
-              e.target.style.display = 'none';
-              const textNode = document.getElementById('brand-fallback-text');
-              if (textNode) textNode.style.display = 'flex';
+              // Fallback to crisp SVG vector if PNG fails
+              e.target.src = '/logo/internlytic-real-logo.svg';
             }}
           />
-          <div
-            id="brand-fallback-text"
-            style={{ display: 'none', flexDirection: 'column' }}
-            aria-hidden="true"
-          >
-            <span style={{ fontSize: '1.1rem', fontWeight: 800, color: '#FFFFFF', letterSpacing: '-0.02em' }}>
-              INTERNLYTIC
-            </span>
-            <span style={{ fontSize: '0.65rem', fontWeight: 700, color: '#18B59A', letterSpacing: '0.12em' }}>
-              TECHNOLOGIES
-            </span>
-          </div>
         </a>
 
-        {/* Desktop Navigation links */}
+        {/* Desktop Navigation Links matching Official Company Website (frame-2s.png) */}
         <nav className="navbar-nav desktop-nav" aria-label="Main Navigation">
-          <a
-            href="#gallery-section"
-            onClick={(e) => { e.preventDefault(); scrollToSection('gallery-section'); }}
-            className="nav-link"
-          >
-            Explore Projects
+          <a href="#hero-heading" onClick={(e) => { e.preventDefault(); scrollToSection('hero-heading'); }} className="nav-link">
+            Home
           </a>
-          <a
-            href="#filter-toolbar"
-            onClick={(e) => { e.preventDefault(); scrollToSection('filter-toolbar'); }}
-            className="nav-link"
-          >
-            Filter Tracks
+          <a href="#all-projects-section" onClick={(e) => { e.preventDefault(); scrollToSection('all-projects-section'); }} className="nav-link">
+            My Portfolio
           </a>
+          <div className="nav-item-dropdown">
+            <span className="nav-link dropdown-toggle">
+              Internships <ChevronDown size={14} className="dropdown-chevron" />
+            </span>
+          </div>
+          <a href="#top-projects-section" onClick={(e) => { e.preventDefault(); scrollToSection('top-projects-section'); }} className="nav-link">
+            Verify Certificate
+          </a>
+          <a href="#gallery-section" onClick={(e) => { e.preventDefault(); scrollToSection('gallery-section'); }} className="nav-link active">
+            Projects
+          </a>
+          <a href="#all-projects-section" onClick={(e) => { e.preventDefault(); scrollToSection('all-projects-section'); }} className="nav-link">
+            Services
+          </a>
+          <a href="#all-projects-section" onClick={(e) => { e.preventDefault(); scrollToSection('all-projects-section'); }} className="nav-link">
+            Courses
+          </a>
+          <a href="#footer-section" onClick={(e) => { e.preventDefault(); scrollToSection('footer-section'); }} className="nav-link">
+            Contact Us
+          </a>
+          <a href="#footer-section" onClick={(e) => { e.preventDefault(); scrollToSection('footer-section'); }} className="nav-link">
+            About Us
+          </a>
+        </nav>
+
+        {/* Right CTA Actions: "Internship Portal Login" + Dark Mode toggle */}
+        <div className="nav-right-actions">
           <button
             type="button"
             onClick={() => scrollToSection('gallery-section')}
-            className="nav-cta-btn btn-tactile"
+            className="internship-portal-btn btn-3d-glow"
           >
-            <Compass size={16} aria-hidden="true" />
-            <span>Discover Work</span>
+            <span>Internship Portal Login</span>
           </button>
-        </nav>
 
-        {/* Mobile Hamburger Toggle Button */}
-        <div className="mobile-toggle-wrapper">
+          <button
+            type="button"
+            onClick={() => setIsDarkMode((prev) => !prev)}
+            className="theme-toggle-btn"
+            aria-label="Toggle theme mode"
+            title="Toggle theme"
+          >
+            {isDarkMode ? <Sun size={18} color="#18B59A" /> : <Moon size={18} color="#073A40" />}
+          </button>
+
+          {/* Mobile Toggle Hamburger */}
           <button
             type="button"
             className="mobile-menu-btn"
@@ -92,7 +105,7 @@ export default function Navbar() {
             aria-expanded={mobileMenuOpen}
             aria-label={mobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
           >
-            {mobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
+            {mobileMenuOpen ? <X size={24} color="#073A40" /> : <Menu size={24} color="#073A40" />}
           </button>
         </div>
       </div>
@@ -101,29 +114,28 @@ export default function Navbar() {
       {mobileMenuOpen && (
         <div className="mobile-menu-drawer" role="dialog" aria-label="Mobile Navigation">
           <nav className="mobile-nav-links">
-            <button
-              type="button"
-              onClick={() => scrollToSection('gallery-section')}
-              className="mobile-nav-item"
-            >
-              <Compass size={18} color="#18B59A" />
-              <span>Explore Projects</span>
+            <button type="button" onClick={() => scrollToSection('hero-heading')} className="mobile-nav-item">
+              Home
             </button>
-            <button
-              type="button"
-              onClick={() => scrollToSection('filter-toolbar')}
-              className="mobile-nav-item"
-            >
-              <Filter size={18} color="#18B59A" />
-              <span>Filter by Track</span>
+            <button type="button" onClick={() => scrollToSection('top-projects-section')} className="mobile-nav-item">
+              Top 5 Intern Projects
+            </button>
+            <button type="button" onClick={() => scrollToSection('gallery-section')} className="mobile-nav-item active">
+              Projects Showcase
+            </button>
+            <button type="button" onClick={() => scrollToSection('all-projects-section')} className="mobile-nav-item">
+              Services &amp; Tracks
+            </button>
+            <button type="button" onClick={() => scrollToSection('footer-section')} className="mobile-nav-item">
+              Contact &amp; About Us
             </button>
             <button
               type="button"
               onClick={() => scrollToSection('gallery-section')}
               className="mobile-nav-item cta"
             >
-              <Sparkles size={18} />
-              <span>Discover All Work</span>
+              <span>Internship Portal Login</span>
+              <ArrowUpRight size={16} />
             </button>
           </nav>
         </div>

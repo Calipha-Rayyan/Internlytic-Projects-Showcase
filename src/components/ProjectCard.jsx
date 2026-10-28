@@ -34,10 +34,10 @@ export default function ProjectCard({ project, index = 0, onOpenDetails }) {
     if (rafRef.current) cancelAnimationFrame(rafRef.current);
 
     rafRef.current = requestAnimationFrame(() => {
-      // 3 to 4 degrees max tilt
+      // 8 degrees max tilt for prominent 3D perspective
       setTilt({
-        x: -normY * 4.5,
-        y: normX * 4.5,
+        x: -normY * 8,
+        y: normX * 8,
         glareX: (x / rect.width) * 100,
         glareY: (y / rect.height) * 100
       });
@@ -71,8 +71,8 @@ export default function ProjectCard({ project, index = 0, onOpenDetails }) {
   const cardTransform = prefersReducedMotion
     ? 'none'
     : isHovered
-      ? `perspective(1000px) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg) translateY(-6px)`
-      : 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)';
+      ? `perspective(1000px) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg) translateY(-10px) translateZ(15px)`
+      : 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px) translateZ(0px)';
 
   return (
     <article

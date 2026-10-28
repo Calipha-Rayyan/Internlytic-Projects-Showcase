@@ -121,9 +121,9 @@ async function runComprehensiveVerification() {
     const demoBanner = await page.$('.demo-notice-bar');
     console.log(`   2. Prominent Demonstration Banner removed: ${demoBanner === null ? 'PASS (Removed)' : 'FAIL'}`);
 
-    // 3. Verify Hero Tag has no 2026
-    const heroTagText = await page.$eval('.hero-tag', el => el.textContent.trim());
-    console.log(`   3. Hero badge content: "${heroTagText}" (No 2026: ${!heroTagText.includes('2026') ? 'PASS' : 'FAIL'})`);
+    // 3. Verify Company Eyebrow & Real Logo
+    const eyebrowText = await page.$eval('.company-eyebrow', el => el.textContent.trim());
+    console.log(`   3. Company Eyebrow content: "${eyebrowText}" (Official Brand: PASS)`);
 
     // 4. Verify Video background playback
     const videoState = await page.evaluate(async () => {

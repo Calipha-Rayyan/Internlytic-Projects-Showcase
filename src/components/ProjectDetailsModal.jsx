@@ -106,16 +106,28 @@ export default function ProjectDetailsModal({ project, onClose }) {
           </button>
         </div>
 
-        {/* Modal Body Content (Scrollable if height exceeds screen) */}
+        {/* Modal Body Content */}
         <div className="modal-body">
           <div className="modal-tags-row">
             <span className="modal-track-badge">
               {project.track}
             </span>
-            <span className="modal-status-badge">
-              <Info size={13} aria-hidden="true" />
-              <span>Sample Project</span>
-            </span>
+            {project.rank ? (
+              <span className="modal-rank-badge">
+                <span className="trophy-emoji">🏆</span>
+                <span>Top {project.rank} Intern Selection</span>
+              </span>
+            ) : (
+              <span className="modal-status-badge">
+                <Info size={13} aria-hidden="true" />
+                <span>Showcase Project</span>
+              </span>
+            )}
+            {project.internId && (
+              <span className="modal-intern-id-badge">
+                ID: {project.internId}
+              </span>
+            )}
           </div>
 
           <h2 id="modal-project-title" className="modal-title">
@@ -125,10 +137,10 @@ export default function ProjectDetailsModal({ project, onClose }) {
           {/* Metadata Grid */}
           <div className="modal-meta-grid">
             <div className="meta-card">
-              <div className="modal-meta-item-label">Creator / Intern Reference</div>
+              <div className="modal-meta-item-label">Creator / Intern Name</div>
               <div className="modal-meta-item-value">
                 <User size={15} color="#18B59A" aria-hidden="true" />
-                <span>{project.internName}</span>
+                <span className="intern-name-highlight">{project.internName}</span>
               </div>
             </div>
 
@@ -141,18 +153,18 @@ export default function ProjectDetailsModal({ project, onClose }) {
             </div>
 
             <div className="meta-card">
-              <div className="modal-meta-item-label">Component Architecture</div>
+              <div className="modal-meta-item-label">Architecture &amp; Stack</div>
               <div className="modal-meta-item-value">
                 <Tag size={15} color="#18B59A" aria-hidden="true" />
-                <span>{project.technologies ? `${project.technologies.length} Stack Components` : 'Multi-tier'}</span>
+                <span>{project.technologies ? `${project.technologies.length} Technologies` : 'Modular Stack'}</span>
               </div>
             </div>
 
             <div className="meta-card">
-              <div className="modal-meta-item-label">Record Classification</div>
+              <div className="modal-meta-item-label">Status Verification</div>
               <div className="modal-meta-item-value">
                 <Info size={15} color="#18B59A" aria-hidden="true" />
-                <span>Sample Project</span>
+                <span>{project.approvalStatus || 'Showcase Project'}</span>
               </div>
             </div>
           </div>
