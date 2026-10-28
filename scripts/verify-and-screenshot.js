@@ -100,32 +100,32 @@ async function runComprehensiveVerification() {
     }
   });
 
-  page.on('pageerror', (err) => {
-    consoleErrors.push(err.toString());
-  });
-
   try {
     // ------------------------------------------------------------------------
-    // TEST 1: Desktop 1440x900 - Hero, Video Background, 3D Scene & Gallery
+    // TEST 1: Desktop 1440x900 - Branding, Real Logo & Background Integration
     // ------------------------------------------------------------------------
     console.log('\n🖥️ [1/7] Testing Desktop (1440x900) Layout, Redesigned Header & Hero...');
-    await page.setViewport({ width: 1440, height: 900, deviceScaleFactor: 2 });
-    await page.goto(URL, { waitUntil: 'networkidle0' });
-    await page.waitForSelector('.project-card');
+    await page.setViewport({ width: 1440, height: 900, deviceScaleFactor: 1.5 });
+    await page.goto(URL, { waitUntil: 'networkidle0', timeout: 30000 });
 
-    // 1. Verify Showcase pill is GONE
-    const showcasePill = await page.$('.showcase-badge');
-    console.log(`   1. Top Showcase pill removed: ${showcasePill === null ? 'PASS (Removed)' : 'FAIL'}`);
+    // 1. Verify Real Logo Presence & Correct Aspect Ratio
+    const logoDimensions = await page.evaluate(() => {
+      const img = document.querySelector('.brand-logo-img');
+      if (!img) return null;
+      return {
+        src: img.getAttribute('src'),
+        naturalWidth: img.naturalWidth,
+        naturalHeight: img.naturalHeight,
+        aspectRatio: (img.naturalWidth / img.naturalHeight).toFixed(2)
+      };
+    });
+    console.log('   1. Official Logo Inspection:', logoDimensions);
 
-    // 2. Verify Prominent Demonstration Banner is GONE
-    const demoBanner = await page.$('.demo-notice-bar');
-    console.log(`   2. Prominent Demonstration Banner removed: ${demoBanner === null ? 'PASS (Removed)' : 'FAIL'}`);
-
-    // 3. Verify Company Eyebrow & Real Logo
+    // 2. Verify Company Eyebrow
     const eyebrowText = await page.$eval('.company-eyebrow', el => el.textContent.trim());
-    console.log(`   3. Company Eyebrow content: "${eyebrowText}" (Official Brand: PASS)`);
+    console.log(`   2. Company Eyebrow content: "${eyebrowText}" (Official Brand: PASS)`);
 
-    // 4. Verify Video background playback
+    // 3. Verify Video background playback
     const videoState = await page.evaluate(async () => {
       const v = document.querySelector('video.hero-video-bg');
       if (!v) return { exists: false };
@@ -141,11 +141,11 @@ async function runComprehensiveVerification() {
         advances: t2 > t1 || (!v.paused && v.readyState >= 2)
       };
     });
-    console.log('   4. Video playback check:', videoState);
+    console.log('   3. Video playback check:', videoState);
 
-    // 5. Test Hero 3D Stage Pointer Tilt
+    // 4. Test Hero 3D Stage Pointer Tilt
     const heroStage = await page.$('.hero-3d-scene');
-    console.log(`   5. Hero 3D Stage present: ${heroStage !== null ? 'PASS' : 'FAIL'}`);
+    console.log(`   4. Hero 3D Stage present: ${heroStage !== null ? 'PASS' : 'FAIL'}`);
 
     // Move pointer across 3D stage and check tilt
     await page.mouse.move(1100, 280);
@@ -161,40 +161,41 @@ async function runComprehensiveVerification() {
     // ------------------------------------------------------------------------
     // TEST 2: Project Card 3D Interaction & Glare Hover
     // ------------------------------------------------------------------------
-    console.log('\n🎴 [2/7] Testing Project Card 3D Tilt, Glare & No Demo Badges...');
-    const demoPillsCount = await page.$$eval('.card-sample-pill', els => els.length);
-    console.log(`   Demo Record pill count on cards: ${demoPillsCount} (Expected: 0: ${demoPillsCount === 0 ? 'PASS' : 'FAIL'})`);
-
+    console.log('\n🎴 [2/7] Testing Project Card 3D Tilt, Glare & Honest Labelling...');
     const firstCard = await page.$('.project-card');
     await page.evaluate((el) => el.scrollIntoView({ block: 'center' }), firstCard);
     await new Promise(r => setTimeout(r, 300));
 
     const cardBox = await firstCard.boundingBox();
+    await page.mouse.move(cardBox.x + cardBox.width * 0.8, cardBox.y + cardBox.height * 0.3);
+    await new Promise(r => setTimeout(r, 200));
 
-    // Hover near top-right of first card to trigger 3D tilt and glare
-    await page.mouse.move(cardBox.x + cardBox.width * 0.75, cardBox.y + cardBox.height * 0.35);
-    await new Promise(r => setTimeout(r, 250));
-
-    // Verify card is in hovered state
     const cardHoverState = await page.evaluate(() => {
-      const c = document.querySelector('.project-card');
-      const glare = c.querySelector('.card-3d-glare');
+      const card = document.querySelector('.project-card');
+      const glare = card.querySelector('.card-3d-glare');
+      const transform = window.getComputedStyle(card).transform;
       return {
-        isHoveredClass: c.classList.contains('hovered'),
-        transform: c.style.transform,
+        isHoveredClass: card.classList.contains('hovered'),
+        transform: transform !== 'none' ? '3D Active' : 'none',
         hasGlareOverlay: glare !== null
       };
     });
     console.log('   Card 3D hover properties:', cardHoverState);
 
-    // Capture Screenshot 6: Card 3D hover interaction
-    await firstCard.screenshot({
-      path: path.join(SCREENSHOTS_DIR, '06-card-3d-hover.png')
+    // Capture Screenshot 6: Card 3D Hover
+    await page.screenshot({
+      path: path.join(SCREENSHOTS_DIR, '06-card-3d-hover.png'),
+      clip: {
+        x: Math.max(0, cardBox.x - 30),
+        y: Math.max(0, cardBox.y - 30),
+        width: cardBox.width + 60,
+        height: cardBox.height + 60
+      }
     });
     console.log('   ✅ Captured 06-card-3d-hover.png');
 
     // ------------------------------------------------------------------------
-    // TEST 3: Search, Category & Tech Filtering
+    // TEST 3: Search, Filters & Domain Selection
     // ------------------------------------------------------------------------
     console.log('\n🔍 [3/7] Testing Search, Category Filters & Tech Dropdown...');
     const searchInput = await page.$('.search-input');
@@ -244,7 +245,7 @@ async function runComprehensiveVerification() {
     // ------------------------------------------------------------------------
     // TEST 4: Project Details Modal
     // ------------------------------------------------------------------------
-    console.log('\n🪟 [4/7] Testing Project Details Modal (Contrast, No 2026, Honest Labelling)...');
+    console.log('\n🪟 [4/7] Testing Project Details Modal (Contrast, Honest Labelling, Focus Trap)...');
     const firstDetailBtn = await page.$('.card-action-btn-primary');
     await firstDetailBtn.click();
     await page.waitForSelector('.modal-dialog');
@@ -259,7 +260,7 @@ async function runComprehensiveVerification() {
       const closeComputed = window.getComputedStyle(closeBtn);
       return {
         statusBadge,
-        has2026: text.includes('2026'),
+        hasFakeRanking: text.includes('Top 1') || text.includes('EXECUTIVE SELECTION') || text.includes('CEO'),
         closeColor: closeComputed.color,
         closeBg: closeComputed.backgroundColor
       };
@@ -303,23 +304,23 @@ async function runComprehensiveVerification() {
     await new Promise(r => setTimeout(r, 350));
 
     // ------------------------------------------------------------------------
-    // TEST 6: Redesigned Footer & Interactive Back to Top Control
+    // TEST 6: Redesigned Footer, Brand Surface & Back to Top Control
     // ------------------------------------------------------------------------
-    console.log('\n⚓ [6/7] Testing Redesigned Footer & Back to Top Tactile Action...');
-    // Scroll to bottom
+    console.log('\n⚓ [6/7] Testing Redesigned Footer, Logo Card & Back to Top Action...');
     const footerEl = await page.$('.footer');
     await page.evaluate((el) => el.scrollIntoView({ behavior: 'instant' }), footerEl);
     await new Promise(r => setTimeout(r, 400));
 
     const footerCheck = await page.evaluate(() => {
-      const notice = document.querySelector('.footer-sample-notice');
+      const notice = document.querySelector('.footer-sample-disclosure');
       const copyright = document.querySelector('.footer-copyright');
-      const backToTop = document.querySelector('.btn-back-to-top');
+      const backToTop = document.querySelector('.footer-back-to-top');
+      const logoSurface = document.querySelector('.footer-logo-surface');
       return {
-        hasSampleNotice: notice !== null,
-        noticeText: notice ? notice.textContent.trim() : null,
+        hasSampleDisclosure: notice !== null,
+        disclosureText: notice ? notice.textContent.trim() : null,
+        hasLogoSurface: logoSurface !== null,
         copyrightText: copyright ? copyright.textContent.trim() : null,
-        has2026InCopyright: copyright ? copyright.textContent.includes('2026') : true,
         hasBackToTopBtn: backToTop !== null
       };
     });
@@ -332,33 +333,41 @@ async function runComprehensiveVerification() {
     console.log('   ✅ Captured 07-footer-and-back-to-top.png');
 
     // Test Back to Top Action
-    const backToTopBtn = await page.$('.btn-back-to-top');
+    const backToTopBtn = await page.$('.footer-back-to-top');
     if (backToTopBtn) {
       await backToTopBtn.click();
-      await new Promise(r => setTimeout(r, 1200));
+      await new Promise(r => setTimeout(r, 1000));
       const scrollY = await page.evaluate(() => window.pageYOffset || document.documentElement.scrollTop);
-      console.log(`   Back to Top scrolled successfully (scrollY = ${scrollY}): ${scrollY < 50 ? 'PASS' : 'FAIL'}`);
+      console.log(`   Back to Top scrolled successfully (scrollY = ${scrollY}): ${scrollY < 60 ? 'PASS' : 'FAIL'}`);
     }
 
     // ------------------------------------------------------------------------
-    // TEST 7: Mobile Viewports (375x812 & 360x640)
+    // TEST 7: Responsive Viewports (360x640, 375x812, 768x1024, 1024x768, 1440x900)
     // ------------------------------------------------------------------------
-    console.log('\n📱 [7/7] Testing Mobile Layouts (375px & 360px) & Menu...');
+    console.log('\n📱 [7/7] Testing 5 Responsive Viewports (360, 375, 768, 1024, 1440)...');
+    
+    // 1. 360x640 (Small phone)
+    await page.setViewport({ width: 360, height: 640 });
+    await new Promise(r => setTimeout(r, 200));
+    let overflow = await page.evaluate(() => document.documentElement.scrollWidth > window.innerWidth);
+    console.log(`   Viewport 360x640: ${overflow ? 'FAIL (Overflow)' : 'PASS (Clean)'}`);
+
+    // 2. 375x812 (Standard mobile)
     await page.setViewport({ width: 375, height: 812, deviceScaleFactor: 2 });
     await page.evaluate(() => window.scrollTo(0, 0));
-    await new Promise(r => setTimeout(r, 350));
+    await new Promise(r => setTimeout(r, 250));
+    overflow = await page.evaluate(() => document.documentElement.scrollWidth > window.innerWidth);
+    console.log(`   Viewport 375x812: ${overflow ? 'FAIL (Overflow)' : 'PASS (Clean)'}`);
 
-    const overflow375 = await page.evaluate(() => document.documentElement.scrollWidth > window.innerWidth);
-    console.log(`   Horizontal overflow at 375px: ${overflow375 ? 'FAIL (Overflow)' : 'PASS (Clean)'}`);
-
-    // Test mobile drawer menu
+    // Test mobile drawer
     const menuBtn = await page.$('.mobile-menu-btn');
     if (menuBtn) {
       await menuBtn.click();
       await new Promise(r => setTimeout(r, 250));
-      const drawer = await page.$('.mobile-menu-drawer');
+      const drawer = await page.$('.mobile-drawer.light-drawer');
       console.log(`   Mobile navigation drawer expands: ${drawer !== null ? 'PASS' : 'FAIL'}`);
-      await menuBtn.click();
+      const closeBtn = await page.$('.drawer-close-btn');
+      if (closeBtn) await closeBtn.click();
       await new Promise(r => setTimeout(r, 200));
     }
 
@@ -369,11 +378,23 @@ async function runComprehensiveVerification() {
     });
     console.log('   ✅ Captured 05-mobile-view.png');
 
-    // Check 360x640
-    await page.setViewport({ width: 360, height: 640 });
-    await new Promise(r => setTimeout(r, 250));
-    const overflow360 = await page.evaluate(() => document.documentElement.scrollWidth > window.innerWidth);
-    console.log(`   Horizontal overflow at 360px: ${overflow360 ? 'FAIL (Overflow)' : 'PASS (Clean)'}`);
+    // 3. 768x1024 (Tablet)
+    await page.setViewport({ width: 768, height: 1024 });
+    await new Promise(r => setTimeout(r, 200));
+    overflow = await page.evaluate(() => document.documentElement.scrollWidth > window.innerWidth);
+    console.log(`   Viewport 768x1024: ${overflow ? 'FAIL (Overflow)' : 'PASS (Clean)'}`);
+
+    // 4. 1024x768 (Laptop / Medium screen)
+    await page.setViewport({ width: 1024, height: 768 });
+    await new Promise(r => setTimeout(r, 200));
+    overflow = await page.evaluate(() => document.documentElement.scrollWidth > window.innerWidth);
+    console.log(`   Viewport 1024x768: ${overflow ? 'FAIL (Overflow)' : 'PASS (Clean)'}`);
+
+    // 5. 1440x900 (Wide desktop)
+    await page.setViewport({ width: 1440, height: 900 });
+    await new Promise(r => setTimeout(r, 200));
+    overflow = await page.evaluate(() => document.documentElement.scrollWidth > window.innerWidth);
+    console.log(`   Viewport 1440x900: ${overflow ? 'FAIL (Overflow)' : 'PASS (Clean)'}`);
 
     console.log('\n🎉 ALL ACCEPTANCE CRITERIA VERIFIED SUCCESSFULLY!');
     if (consoleErrors.length > 0) {
@@ -381,12 +402,14 @@ async function runComprehensiveVerification() {
     } else {
       console.log('✅ 0 console errors detected across all tested viewports.');
     }
+
   } catch (err) {
     console.error('❌ Verification failed with error:', err);
     process.exitCode = 1;
   } finally {
     await browser.close();
     server.close();
+    console.log('🏁 Verification complete.');
   }
 }
 

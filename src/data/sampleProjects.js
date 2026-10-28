@@ -1,21 +1,18 @@
 /**
  * Internlytic Projects Showcase - Sample Demonstration Data
  * 
- * DISCLAIMER & NOTICE:
- * This dataset contains fictional, clearly labelled demonstration records
- * created exclusively to showcase frontend gallery and filtering capabilities.
- * These records do NOT represent real submissions, private corporate databases,
- * or proprietary intellectual property of Internlytic Technologies.
- * 
- * All statuses are explicitly labelled as "Sample Project"
- * to maintain complete honesty and compliance with showcase guidelines.
+ * DISCLAIMER & HONEST DATA DISCLOSURE:
+ * This dataset contains clearly labelled demonstration records
+ * created exclusively to demonstrate gallery discovery, search, track filtering,
+ * and project detail interactions. These records are sample projects and do not
+ * represent actual corporate submissions or private company databases.
  */
 
 export const SAMPLE_PROJECTS = [
   {
-    id: "proj-001",
+    id: "sample-001",
     projectTitle: "AI Study Planner",
-    internName: "Demonstration Intern - Track Alpha",
+    internName: "Demo Intern — Track Alpha",
     track: "AI & Machine Learning",
     description: "An adaptive revision schedule generator that analyzes syllabus topics, student exam dates, and daily availability to generate optimized spaced-repetition schedules with personalized focus sessions.",
     thumbnailUrl: "/images/projects/ai-study-planner.svg",
@@ -25,9 +22,9 @@ export const SAMPLE_PROJECTS = [
     approvalStatus: "Sample Project"
   },
   {
-    id: "proj-002",
+    id: "sample-002",
     projectTitle: "Expense Tracking Dashboard",
-    internName: "Demonstration Intern - Track Beta",
+    internName: "Demo Intern — Track Beta",
     track: "Web Development",
     description: "An intuitive financial management dashboard with real-time budget forecasting, interactive expense category breakdowns, receipt categorization, and CSV transaction exports.",
     thumbnailUrl: "/images/projects/expense-tracker.svg",
@@ -37,9 +34,9 @@ export const SAMPLE_PROJECTS = [
     approvalStatus: "Sample Project"
   },
   {
-    id: "proj-003",
+    id: "sample-003",
     projectTitle: "Smart Library Management",
-    internName: "Demonstration Intern - Track Gamma",
+    internName: "Demo Intern — Track Gamma",
     track: "Web Development",
     description: "A centralized catalog system featuring barcode scanning simulation, automated overdue loan notifications, reservation queues, and comprehensive inventory management for academic institutions.",
     thumbnailUrl: "/images/projects/smart-library.svg",
@@ -49,9 +46,9 @@ export const SAMPLE_PROJECTS = [
     approvalStatus: "Sample Project"
   },
   {
-    id: "proj-004",
+    id: "sample-004",
     projectTitle: "Developer Portfolio Builder",
-    internName: "Demonstration Intern - Track Delta",
+    internName: "Demo Intern — Track Delta",
     track: "UI/UX Design",
     description: "A modular, accessible portfolio construction toolkit for junior engineers offering accessible theme configurations, dynamic markdown project showcases, and live layout switching.",
     thumbnailUrl: "/images/projects/portfolio-builder.svg",
@@ -61,9 +58,9 @@ export const SAMPLE_PROJECTS = [
     approvalStatus: "Sample Project"
   },
   {
-    id: "proj-005",
+    id: "sample-005",
     projectTitle: "Weather Forecast Dashboard",
-    internName: "Demonstration Intern - Track Epsilon",
+    internName: "Demo Intern — Track Epsilon",
     track: "Web Development",
     description: "A weather intelligence terminal providing 7-day hourly forecasts, interactive precipitation radar overlays, air quality metrics (AQI), and geocoded multi-city weather tracking.",
     thumbnailUrl: "/images/projects/weather-dashboard.svg",
@@ -73,9 +70,9 @@ export const SAMPLE_PROJECTS = [
     approvalStatus: "Sample Project"
   },
   {
-    id: "proj-006",
+    id: "sample-006",
     projectTitle: "E-commerce Analytics Tool",
-    internName: "Demonstration Intern - Track Zeta",
+    internName: "Demo Intern — Track Zeta",
     track: "Data Science",
     description: "An exploratory business intelligence suite tracking conversion funnels, churn probability signals, customer lifetime value (CLV) estimations, and cohort retention visualizers.",
     thumbnailUrl: "/images/projects/ecommerce-analytics.svg",
@@ -85,9 +82,9 @@ export const SAMPLE_PROJECTS = [
     approvalStatus: "Sample Project"
   },
   {
-    id: "proj-007",
+    id: "sample-007",
     projectTitle: "Mobile Habit Tracker",
-    internName: "Demonstration Intern - Track Eta",
+    internName: "Demo Intern — Track Eta",
     track: "Mobile Applications",
     description: "A cross-platform daily habit discipline companion with customizable streaks, milestone badges, motivational micro-animations, and offline-first local storage caching.",
     thumbnailUrl: "/images/projects/habit-tracker.svg",
@@ -97,9 +94,9 @@ export const SAMPLE_PROJECTS = [
     approvalStatus: "Sample Project"
   },
   {
-    id: "proj-008",
+    id: "sample-008",
     projectTitle: "Document Processing Assistant",
-    internName: "Demonstration Intern - Track Theta",
+    internName: "Demo Intern — Track Theta",
     track: "AI & Machine Learning",
     description: "An automated document workflow processor providing key entity extraction, multi-lingual summarization, table extraction from PDFs, and instant structured JSON export.",
     thumbnailUrl: "/images/projects/document-assistant.svg",
@@ -109,9 +106,9 @@ export const SAMPLE_PROJECTS = [
     approvalStatus: "Sample Project"
   },
   {
-    id: "proj-009",
+    id: "sample-009",
     projectTitle: "Cloud Deployment Monitor",
-    internName: "Demonstration Intern - Track Iota",
+    internName: "Demo Intern — Track Iota",
     track: "Cloud & DevOps",
     description: "A unified infrastructure health dashboard tracking Kubernetes pod statuses, container deployment rollout stages, latency heatmaps, and simulated incident alerting thresholds.",
     thumbnailUrl: "/images/projects/cloud-monitor.svg",
@@ -121,9 +118,9 @@ export const SAMPLE_PROJECTS = [
     approvalStatus: "Sample Project"
   },
   {
-    id: "proj-010",
+    id: "sample-010",
     projectTitle: "Student Attendance Management",
-    internName: "Demonstration Intern - Track Kappa",
+    internName: "Demo Intern — Track Kappa",
     track: "Web Development",
     description: "A streamlined classroom attendance recorder featuring rapid digital roll-call, anomaly detection for frequent absentees, automated guardian alert digests, and semester compliance reports.",
     thumbnailUrl: "/images/projects/attendance-management.svg",
@@ -131,79 +128,6 @@ export const SAMPLE_PROJECTS = [
     githubUrl: null,
     technologies: ["React", "Express.js", "SQLite", "Tailwind CSS"],
     approvalStatus: "Sample Project"
-  }
-];
-
-export const TOP_5_INTERN_PROJECTS = [
-  {
-    id: "top-001",
-    rank: 1,
-    internName: "Fatima Ahmad",
-    internId: "INT-2026-000042",
-    projectTitle: "Personal Portfolio Website",
-    track: "Web Development",
-    description: "A high-performance personal portfolio website built with modern responsive design, interactive animations, and optimized showcase modules for creative web engineering.",
-    thumbnailUrl: "/images/projects/portfolio-builder.svg",
-    liveUrl: "https://fatimaahmadportfolio.vercel.app/",
-    githubUrl: null,
-    technologies: ["React", "CSS3", "JavaScript", "Vite", "Responsive Design"],
-    approvalStatus: "Top Ranked Intern"
-  },
-  {
-    id: "top-002",
-    rank: 2,
-    internName: "Sharmeen Mehboob",
-    internId: "INT-2026-000012",
-    projectTitle: "Internlytic Intern Portal — Mobile UI/UX Design Concept",
-    track: "UI/UX Design",
-    description: "An end-to-end mobile UX case study and high-fidelity prototype designed for seamless intern onboarding, daily attendance logging, and assignment management.",
-    thumbnailUrl: "/images/projects/smart-library.svg",
-    liveUrl: null,
-    githubUrl: null,
-    technologies: ["Figma", "Design Systems", "Prototyping", "User Research"],
-    approvalStatus: "Top Ranked Intern"
-  },
-  {
-    id: "top-003",
-    rank: 3,
-    internName: "iqra ismaeel",
-    internId: "INT-2026-000043",
-    projectTitle: "Internlytic AI Prompt Library",
-    track: "AI & Machine Learning",
-    description: "A curated intelligent prompt engineering library empowering developers and designers with pre-tested AI prompts, categories, and direct execution templates.",
-    thumbnailUrl: "/images/projects/ai-study-planner.svg",
-    liveUrl: null,
-    githubUrl: null,
-    technologies: ["React", "FastAPI", "Prompt Engineering", "Tailwind CSS"],
-    approvalStatus: "Top Ranked Intern"
-  },
-  {
-    id: "top-004",
-    rank: 4,
-    internName: "Muhammad Rayyan Bhatti",
-    internId: "INT-2026-000021",
-    projectTitle: "Internlytic Intern Portal UI/UX",
-    track: "UI/UX Design",
-    description: "A comprehensive web portal experience designed for interns and administrators with unified dashboard metrics, progress tracking, and certificate verification.",
-    thumbnailUrl: "/images/projects/ecommerce-analytics.svg",
-    liveUrl: null,
-    githubUrl: null,
-    technologies: ["Figma", "UI Architecture", "Design Tokens", "Wireframing"],
-    approvalStatus: "Top Ranked Intern"
-  },
-  {
-    id: "top-005",
-    rank: 5,
-    internName: "Fiza Ishaq",
-    internId: "INT-2026-000038",
-    projectTitle: "3D Interactive Personal Portfolio Website",
-    track: "Web Development",
-    description: "A cutting-edge 3D interactive portfolio featuring Three.js scenes, custom shaders, camera depth transitions, and immersive spatial web navigation.",
-    thumbnailUrl: "/images/projects/weather-dashboard.svg",
-    liveUrl: null,
-    githubUrl: null,
-    technologies: ["Three.js", "React", "WebGL", "GSAP", "3D Motion"],
-    approvalStatus: "Top Ranked Intern"
   }
 ];
 
@@ -216,4 +140,3 @@ export const AVAILABLE_TRACKS = [
   "UI/UX Design",
   "Cloud & DevOps"
 ];
-

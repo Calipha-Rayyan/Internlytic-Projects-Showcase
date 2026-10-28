@@ -3,41 +3,26 @@
  * 
  * Provides an asynchronous abstraction layer for fetching and transforming showcase records.
  * Currently backed by verified local demonstration data in `src/data/sampleProjects.js`.
- * 
- * Future Integration Notice:
- * This service can be adapted to query an approved Supabase instance by replacing
- * local resolution with `supabase.from('showcase_projects').select('*')` with RLS policies.
  */
 
-import { SAMPLE_PROJECTS, TOP_5_INTERN_PROJECTS, AVAILABLE_TRACKS } from '../data/sampleProjects';
-
-/**
- * Fetch top CEO-ranked showcase projects from the authentic company concept.
- * @returns {Promise<Array>}
- */
-export async function fetchTopProjects() {
-  return Promise.resolve(TOP_5_INTERN_PROJECTS);
-}
+import { SAMPLE_PROJECTS, AVAILABLE_TRACKS } from '../data/sampleProjects';
 
 /**
  * Fetch all showcase projects asynchronously.
  * Simulates micro-latency for smooth UI hydration and skeleton previews.
  * @param {Object} options
- * @param {number} options.delayMs - Simulated latency in milliseconds (default: 200ms)
+ * @param {number} options.delayMs - Simulated latency in milliseconds (default: 180ms)
  * @returns {Promise<Array>}
  */
-export async function fetchProjects({ delayMs = 200 } = {}) {
+export async function fetchProjects({ delayMs = 180 } = {}) {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       try {
         if (!SAMPLE_PROJECTS || !Array.isArray(SAMPLE_PROJECTS)) {
           throw new Error('Project dataset format is corrupted or unreachable.');
         }
-        // Combine Top 5 Intern projects with showcase projects
-        const allProjects = [...TOP_5_INTERN_PROJECTS, ...SAMPLE_PROJECTS];
-        const sanitized = allProjects.map((project) => ({
+        const sanitized = SAMPLE_PROJECTS.map((project) => ({
           ...project,
-          // Ensure guaranteed fallbacks for safe rendering
           id: String(project.id),
           projectTitle: project.projectTitle || 'Untitled Showcase Project',
           internName: project.internName || 'Demonstration Contributor',
@@ -84,7 +69,6 @@ export function computeShowcaseMetrics(projects = []) {
   return {
     totalProjects,
     totalTracks: tracksSet.size,
-    distinctTechnologies: techSet.size,
-    isSampleData: true
+    distinctTechnologies: techSet.size
   };
 }

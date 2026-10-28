@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { X, ExternalLink, Github, Calendar, Info, User, Layers, Tag, ShieldAlert } from 'lucide-react';
+import { X, ExternalLink, Github, Info, User, Layers, Tag, ShieldCheck } from 'lucide-react';
 
 export default function ProjectDetailsModal({ project, onClose }) {
   const modalRef = useRef(null);
@@ -112,22 +112,10 @@ export default function ProjectDetailsModal({ project, onClose }) {
             <span className="modal-track-badge">
               {project.track}
             </span>
-            {project.rank ? (
-              <span className="modal-rank-badge">
-                <span className="trophy-emoji">🏆</span>
-                <span>Top {project.rank} Intern Selection</span>
-              </span>
-            ) : (
-              <span className="modal-status-badge">
-                <Info size={13} aria-hidden="true" />
-                <span>Showcase Project</span>
-              </span>
-            )}
-            {project.internId && (
-              <span className="modal-intern-id-badge">
-                ID: {project.internId}
-              </span>
-            )}
+            <span className="modal-status-badge">
+              <Info size={13} aria-hidden="true" />
+              <span>Sample Demonstration Project</span>
+            </span>
           </div>
 
           <h2 id="modal-project-title" className="modal-title">
@@ -137,7 +125,7 @@ export default function ProjectDetailsModal({ project, onClose }) {
           {/* Metadata Grid */}
           <div className="modal-meta-grid">
             <div className="meta-card">
-              <div className="modal-meta-item-label">Creator / Intern Name</div>
+              <div className="modal-meta-item-label">Attributed Creator</div>
               <div className="modal-meta-item-value">
                 <User size={15} color="#18B59A" aria-hidden="true" />
                 <span className="intern-name-highlight">{project.internName}</span>
@@ -153,7 +141,7 @@ export default function ProjectDetailsModal({ project, onClose }) {
             </div>
 
             <div className="meta-card">
-              <div className="modal-meta-item-label">Architecture &amp; Stack</div>
+              <div className="modal-meta-item-label">Architecture Stack</div>
               <div className="modal-meta-item-value">
                 <Tag size={15} color="#18B59A" aria-hidden="true" />
                 <span>{project.technologies ? `${project.technologies.length} Technologies` : 'Modular Stack'}</span>
@@ -161,10 +149,10 @@ export default function ProjectDetailsModal({ project, onClose }) {
             </div>
 
             <div className="meta-card">
-              <div className="modal-meta-item-label">Status Verification</div>
+              <div className="modal-meta-item-label">Record Verification</div>
               <div className="modal-meta-item-value">
-                <Info size={15} color="#18B59A" aria-hidden="true" />
-                <span>{project.approvalStatus || 'Showcase Project'}</span>
+                <ShieldCheck size={15} color="#18B59A" aria-hidden="true" />
+                <span>Demonstration Record</span>
               </div>
             </div>
           </div>
@@ -194,7 +182,6 @@ export default function ProjectDetailsModal({ project, onClose }) {
 
         {/* Modal Actions Footer with High-Contrast Buttons */}
         <div className="modal-footer">
-          {/* Explicit, High-Contrast Close Action (Fixed contrast issue) */}
           <button
             type="button"
             onClick={onClose}
@@ -223,7 +210,7 @@ export default function ProjectDetailsModal({ project, onClose }) {
               rel="noopener noreferrer"
               className="modal-action-btn-primary btn-tactile"
             >
-              <span>View Project</span>
+              <span>View Live Project</span>
               <ExternalLink size={16} aria-hidden="true" />
             </a>
           )}

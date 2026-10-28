@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
-import TopProjectsSection from './components/TopProjectsSection';
 import SearchBar from './components/SearchBar';
 import FilterControls from './components/FilterControls';
 import ProjectsGrid from './components/ProjectsGrid';
@@ -62,30 +61,30 @@ export default function App() {
 
   return (
     <div className="app-root">
-      {/* Navigation Header with Real Logo & Official Company Navigation */}
-      <Navbar />
+      {/* Navigation Header with Official Brand Identity & Coherent Light Surface */}
+      <Navbar onExploreClick={() => {
+        const el = document.getElementById('gallery-section');
+        if (el) {
+          const y = el.getBoundingClientRect().top + window.pageYOffset - 75;
+          window.scrollTo({ top: y, behavior: 'smooth' });
+        }
+      }} />
 
       <main id="main-content">
-        {/* Hero Section with Looping Video & Interactive 3D Stage */}
+        {/* Hero Section with Genuine Video Motion & Interactive 3D Stage */}
         <Hero
           metrics={showcaseMetrics}
           onRefreshProjects={loadProjectData}
         />
 
-        {/* Featured "Top 5 Intern Projects" Section (Original Company Concept from Video) */}
-        {!isLoading && !loadError && (
-          <TopProjectsSection
-            projects={projects.slice(0, 5)}
-            onOpenDetails={setSelectedProject}
-          />
-        )}
-
         {/* 3D Search & Filter Command Deck */}
-        <section className="toolbar-section" id="all-projects-section">
+        <section className="toolbar-section" id="filter-toolbar">
           <div className="container">
             <div className="section-title-wrapper">
-              <h2 className="all-projects-heading">All Projects</h2>
-              <p className="all-projects-sub">Explore and filter across all internship tracks and technologies.</p>
+              <h2 className="all-projects-heading">Projects Showcase Gallery</h2>
+              <p className="all-projects-sub">
+                Filter and discover demonstration projects across specialized engineering and design disciplines.
+              </p>
             </div>
 
             <div className="toolbar-card toolbar-3d-deck">
@@ -159,8 +158,15 @@ export default function App() {
         />
       )}
 
-      {/* Footer matching Original Company Architecture */}
-      <Footer />
+      {/* Footer matching Official Brand Palette with Discreet Honest Disclaimer */}
+      <Footer onSelectTrack={(track) => {
+        setSelectedTrack(track);
+        const el = document.getElementById('gallery-section');
+        if (el) {
+          const y = el.getBoundingClientRect().top + window.pageYOffset - 75;
+          window.scrollTo({ top: y, behavior: 'smooth' });
+        }
+      }} />
     </div>
   );
 }

@@ -185,15 +185,6 @@
     flex-direction: column;
     align-items: flex-start;
   }
-
-  .top-projects-title {
-    font-size: 1.85rem;
-  }
-
-  .top-projects-grid {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
 }
 
 /* --------------------------------------------------------------------------
@@ -309,17 +300,14 @@
     flex-wrap: wrap;
   }
 
-  .card-action-btn-primary {
+  .card-action-btn-primary,
+  .card-action-btn-secondary {
     width: 100%;
-    order: 1;
   }
 
-  .card-link-icon-btn {
-    order: 2;
-  }
-
-  .top-card-actions {
+  .card-actions-row {
     grid-template-columns: 1fr;
+    gap: 0.5rem;
   }
 }
 

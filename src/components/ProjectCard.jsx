@@ -1,5 +1,5 @@
 import React, { useState, useRef, useCallback, useEffect } from 'react';
-import { ExternalLink, Github, Eye, User, Sparkles } from 'lucide-react';
+import { ExternalLink, Github, Eye, User, Layers } from 'lucide-react';
 
 export default function ProjectCard({ project, index = 0, onOpenDetails }) {
   const [imgSrc, setImgSrc] = useState(project.thumbnailUrl || '/images/placeholders/fallback.svg');
@@ -34,10 +34,10 @@ export default function ProjectCard({ project, index = 0, onOpenDetails }) {
     if (rafRef.current) cancelAnimationFrame(rafRef.current);
 
     rafRef.current = requestAnimationFrame(() => {
-      // 8 degrees max tilt for prominent 3D perspective
+      // Restrained perspective tilt: 3.5 to 4 degrees max for comfortable, readable 3D depth
       setTilt({
-        x: -normY * 8,
-        y: normX * 8,
+        x: Math.max(-4, Math.min(4, -normY * 4)),
+        y: Math.max(-4, Math.min(4, normX * 4)),
         glareX: (x / rect.width) * 100,
         glareY: (y / rect.height) * 100
       });
@@ -49,6 +49,7 @@ export default function ProjectCard({ project, index = 0, onOpenDetails }) {
   const handleMouseLeave = () => {
     setIsHovered(false);
     if (rafRef.current) cancelAnimationFrame(rafRef.current);
+    // Smooth return to rest
     setTilt({ x: 0, y: 0, glareX: 50, glareY: 50 });
   };
 
@@ -65,13 +66,13 @@ export default function ProjectCard({ project, index = 0, onOpenDetails }) {
   const hasLiveUrl = Boolean(project.liveUrl && project.liveUrl.trim().length > 0);
   const hasGithubUrl = Boolean(project.githubUrl && project.githubUrl.trim().length > 0);
 
-  // Stagger delay calculation (max 600ms)
-  const staggerDelay = prefersReducedMotion ? '0ms' : `${Math.min(index * 60, 480)}ms`;
+  // Stagger entrance delay calculation (max 480ms)
+  const staggerDelay = prefersReducedMotion ? '0ms' : `${Math.min(index * 50, 400)}ms`;
 
   const cardTransform = prefersReducedMotion
     ? 'none'
     : isHovered
-      ? `perspective(1000px) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg) translateY(-10px) translateZ(15px)`
+      ? `perspective(1000px) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg) translateY(-6px) translateZ(8px)`
       : 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px) translateZ(0px)';
 
   return (
@@ -85,21 +86,23 @@ export default function ProjectCard({ project, index = 0, onOpenDetails }) {
       style={{
         transform: cardTransform,
         animationDelay: staggerDelay,
-        transition: isHovered ? 'transform 100ms ease-out, box-shadow 150ms ease-out' : 'transform 500ms cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 500ms ease-out'
+        transition: isHovered
+          ? 'transform 120ms ease-out, box-shadow 150ms ease-out'
+          : 'transform 450ms cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 450ms ease-out'
       }}
     >
-      {/* Dynamic 3D Glare Lighting Effect on Hover */}
+      {/* Controlled Specular Glare Highlight */}
       {isHovered && !prefersReducedMotion && (
         <div
           className="card-3d-glare"
           style={{
-            background: `radial-gradient(circle at ${tilt.glareX}% ${tilt.glareY}%, rgba(24, 181, 154, 0.12) 0%, transparent 65%)`
+            background: `radial-gradient(circle at ${tilt.glareX}% ${tilt.glareY}%, rgba(24, 181, 154, 0.14) 0%, transparent 65%)`
           }}
           aria-hidden="true"
         />
       )}
 
-      {/* 16:9 Thumbnail preview */}
+      {/* 16:9 Thumbnail preview sitting visually in 3D */}
       <div
         className="card-thumbnail-container"
         onClick={() => onOpenDetails(project)}
@@ -115,7 +118,7 @@ export default function ProjectCard({ project, index = 0, onOpenDetails }) {
       >
         <img
           src={imgSrc}
-          alt={`Demonstration preview of ${project.projectTitle}`}
+          alt={`Illustration preview for ${project.projectTitle}`}
           loading="lazy"
           className="card-thumbnail-img"
           onError={handleImageError}
@@ -167,7 +170,7 @@ export default function ProjectCard({ project, index = 0, onOpenDetails }) {
           </div>
         )}
 
-        {/* Card Actions Row with 3D tactile interaction */}
+        {/* Card Actions Row: Always provides functional, tactile actions */}
         <div className="card-actions-row">
           <button
             type="button"
@@ -179,31 +182,40 @@ export default function ProjectCard({ project, index = 0, onOpenDetails }) {
             <span>Project Details</span>
           </button>
 
-          {/* Conditional External Actions - Only rendered when valid URLs exist */}
-          {hasLiveUrl && (
+          {hasLiveUrl ? (
             <a
               href={project.liveUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="card-link-icon-btn btn-tactile"
-              title="View live demo (opens in new tab)"
+              className="card-action-btn-secondary btn-tactile"
+              title="Open external live demo"
               aria-label={`View live demo of ${project.projectTitle}`}
             >
-              <ExternalLink size={16} aria-hidden="true" />
+              <ExternalLink size={14} aria-hidden="true" />
+              <span>Live Demo</span>
             </a>
-          )}
-
-          {hasGithubUrl && (
+          ) : hasGithubUrl ? (
             <a
               href={project.githubUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="card-link-icon-btn btn-tactile"
-              title="View GitHub repository (opens in new tab)"
+              className="card-action-btn-secondary btn-tactile"
+              title="Open GitHub repository"
               aria-label={`View GitHub repository for ${project.projectTitle}`}
             >
-              <Github size={16} aria-hidden="true" />
+              <Github size={14} aria-hidden="true" />
+              <span>Source Code</span>
             </a>
+          ) : (
+            <button
+              type="button"
+              onClick={() => onOpenDetails(project)}
+              className="card-action-btn-secondary btn-tactile"
+              aria-label={`View architecture stack for ${project.projectTitle}`}
+            >
+              <Layers size={14} aria-hidden="true" />
+              <span>Stack Specs</span>
+            </button>
           )}
         </div>
       </div>
