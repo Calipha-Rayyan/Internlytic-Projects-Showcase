@@ -55,10 +55,6 @@ export default function Navbar() {
               TECHNOLOGIES
             </span>
           </div>
-          <span className="showcase-badge">
-            <Sparkles size={11} aria-hidden="true" />
-            Showcase
-          </span>
         </a>
 
         {/* Desktop Navigation links */}
@@ -80,7 +76,7 @@ export default function Navbar() {
           <button
             type="button"
             onClick={() => scrollToSection('gallery-section')}
-            className="nav-cta-btn"
+            className="nav-cta-btn btn-tactile"
           >
             <Compass size={16} aria-hidden="true" />
             <span>Discover Work</span>

@@ -3,11 +3,11 @@
  * 
  * DISCLAIMER & NOTICE:
  * This dataset contains fictional, clearly labelled demonstration records
- * created exclusively to showcase the frontend gallery capabilities.
+ * created exclusively to showcase frontend gallery and filtering capabilities.
  * These records do NOT represent real submissions, private corporate databases,
  * or proprietary intellectual property of Internlytic Technologies.
  * 
- * All statuses are explicitly labelled as "Sample Project" or "Illustrative Demo Record"
+ * All statuses are explicitly labelled as "Sample Project"
  * to maintain complete honesty and compliance with showcase guidelines.
  */
 
@@ -22,8 +22,7 @@ export const SAMPLE_PROJECTS = [
     liveUrl: null,
     githubUrl: null,
     technologies: ["React", "Python", "FastAPI", "scikit-learn", "Tailwind CSS"],
-    approvalStatus: "Sample Project",
-    createdAt: "2026-08-15"
+    approvalStatus: "Sample Project"
   },
   {
     id: "proj-002",
@@ -35,8 +34,7 @@ export const SAMPLE_PROJECTS = [
     liveUrl: null,
     githubUrl: null,
     technologies: ["React", "TypeScript", "Chart.js", "Node.js", "Express"],
-    approvalStatus: "Sample Project",
-    createdAt: "2026-08-22"
+    approvalStatus: "Sample Project"
   },
   {
     id: "proj-003",
@@ -48,8 +46,7 @@ export const SAMPLE_PROJECTS = [
     liveUrl: null,
     githubUrl: null,
     technologies: ["React", "PostgreSQL", "REST APIs", "Tailwind CSS"],
-    approvalStatus: "Sample Project",
-    createdAt: "2026-09-02"
+    approvalStatus: "Sample Project"
   },
   {
     id: "proj-004",
@@ -61,8 +58,7 @@ export const SAMPLE_PROJECTS = [
     liveUrl: null,
     githubUrl: null,
     technologies: ["Figma", "React", "CSS Modules", "HTML5 Semantics", "Vite"],
-    approvalStatus: "Sample Project",
-    createdAt: "2026-09-10"
+    approvalStatus: "Sample Project"
   },
   {
     id: "proj-005",
@@ -74,8 +70,7 @@ export const SAMPLE_PROJECTS = [
     liveUrl: null,
     githubUrl: null,
     technologies: ["React", "Vite", "OpenMeteo API", "Leaflet Maps", "Vanilla CSS"],
-    approvalStatus: "Sample Project",
-    createdAt: "2026-09-18"
+    approvalStatus: "Sample Project"
   },
   {
     id: "proj-006",
@@ -87,8 +82,7 @@ export const SAMPLE_PROJECTS = [
     liveUrl: null,
     githubUrl: null,
     technologies: ["Python", "Pandas", "React", "Recharts", "SQL"],
-    approvalStatus: "Sample Project",
-    createdAt: "2026-09-27"
+    approvalStatus: "Sample Project"
   },
   {
     id: "proj-007",
@@ -100,8 +94,7 @@ export const SAMPLE_PROJECTS = [
     liveUrl: null,
     githubUrl: null,
     technologies: ["React Native", "Expo", "AsyncStorage", "TypeScript"],
-    approvalStatus: "Sample Project",
-    createdAt: "2026-10-04"
+    approvalStatus: "Sample Project"
   },
   {
     id: "proj-008",
@@ -113,8 +106,7 @@ export const SAMPLE_PROJECTS = [
     liveUrl: null,
     githubUrl: null,
     technologies: ["Python", "OCR", "Hugging Face", "FastAPI", "React"],
-    approvalStatus: "Sample Project",
-    createdAt: "2026-10-12"
+    approvalStatus: "Sample Project"
   },
   {
     id: "proj-009",
@@ -126,8 +118,7 @@ export const SAMPLE_PROJECTS = [
     liveUrl: null,
     githubUrl: null,
     technologies: ["Docker", "Kubernetes", "Prometheus", "Grafana", "React"],
-    approvalStatus: "Sample Project",
-    createdAt: "2026-10-19"
+    approvalStatus: "Sample Project"
   },
   {
     id: "proj-010",
@@ -139,8 +130,7 @@ export const SAMPLE_PROJECTS = [
     liveUrl: null,
     githubUrl: null,
     technologies: ["React", "Express.js", "SQLite", "Tailwind CSS"],
-    approvalStatus: "Sample Project",
-    createdAt: "2026-10-24"
+    approvalStatus: "Sample Project"
   }
 ];
 

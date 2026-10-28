@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import Navbar from './components/Navbar';
-import NoticeBanner from './components/NoticeBanner';
 import Hero from './components/Hero';
 import SearchBar from './components/SearchBar';
 import FilterControls from './components/FilterControls';
@@ -64,9 +63,6 @@ export default function App() {
     <div className="app-root">
       {/* Navigation Header */}
       <Navbar />
-
-      {/* Demonstration Notice */}
-      <NoticeBanner />
 
       <main id="main-content">
         {/* Two-Column Hero Section with 3D Scene and Video Background */}

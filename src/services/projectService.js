@@ -35,8 +35,7 @@ export async function fetchProjects({ delayMs = 200 } = {}) {
           track: project.track || 'Web Development',
           description: project.description || '',
           technologies: Array.isArray(project.technologies) ? project.technologies : [],
-          approvalStatus: project.approvalStatus || 'Sample Project',
-          createdAt: project.createdAt || '2026 Season'
+          approvalStatus: project.approvalStatus || 'Sample Project'
         }));
         resolve(sanitized);
       } catch (err) {

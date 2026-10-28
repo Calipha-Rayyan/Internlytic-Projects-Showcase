@@ -201,10 +201,6 @@
     height: 32px;
   }
 
-  .showcase-badge {
-    display: none; /* Keep mobile header clean and single-line */
-  }
-
   .hero-actions {
     flex-direction: column;
     align-items: stretch;

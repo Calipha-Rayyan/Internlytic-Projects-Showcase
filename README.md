@@ -15,9 +15,11 @@ The **Internlytic Projects Showcase** is an independent, production-grade fronte
 - **Tactile 3D Micro-Interactions**: Realistic button depression, dynamic elevation shadows, and pointer-responsive card tilt.
 - **Dedicated Data Service Layer**: Clean asynchronous separation of concerns in [`src/services/projectService.js`](file:///d:/Front-End%20Development%20Internship/Internlytic-Projects-Showcase/src/services/projectService.js).
 - **Redesigned Mobile Experience**: Compact sticky header with an accessible slide-down navigation drawer, non-clipped search bar, and zero horizontal overflow on 375px & 360px screens.
-- **High-Contrast Modal Dialog**: Completely redesigned with high-contrast actions, focus restoration, and honest sample status labelling (*"Illustrative Demo Record"*).
+- **High-Contrast Modal Dialog**: Completely redesigned with high-contrast actions, focus restoration, and honest sample status labelling (*"Sample Project"*).
+- **Deliberate Interactive Back to Top**: Raised 3D tactile button with smooth scrolling and keyboard accessibility.
+- **Unobtrusive Sample-Data Disclosure**: Clean, honest notice in the footer (`Sample project records are illustrative and do not represent actual company submissions.`) without intrusive banners or redundant card badges.
 
-> **Notice:** This application is an independent frontend demonstration created using clearly labelled sample data. It does not access private company databases, internal APIs, production websites, or private Supabase projects.
+> **Notice:** Sample project records are illustrative and do not represent actual company submissions. This application is an independent frontend demonstration created using clearly labelled sample data. It does not access private company databases, internal APIs, production websites, or private Supabase projects.
 
 ---
 
@@ -97,7 +99,6 @@ Internlytic-Projects-Showcase/
     │   └── useProjectFilters.js   # Custom React hook for search and filtering
     ├── components/
     │   ├── Navbar.jsx             # Sticky navigation header with mobile drawer
-    │   ├── NoticeBanner.jsx       # Restrained demonstration notice banner
     │   ├── Hero.jsx               # Two-column hero with video bg and dynamic stats
     │   ├── Hero3DStage.jsx        # Interactive 3D project stage with pointer tilt
     │   ├── SearchBar.jsx          # Accessible search bar with keyboard shortcut hint

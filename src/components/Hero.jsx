@@ -114,7 +114,7 @@ export default function Hero({ metrics = { totalProjects: 10, totalTracks: 6, di
         <div className="hero-left-col">
           <div className="hero-tag">
             <Sparkles size={14} aria-hidden="true" />
-            <span>Internship Project Gallery • 2026 Showcase</span>
+            <span>Internship Project Gallery</span>
           </div>
 
           <h1 id="hero-heading" className="hero-title">
@@ -129,7 +129,7 @@ export default function Hero({ metrics = { totalProjects: 10, totalTracks: 6, di
             <a
               href="#gallery-section"
               onClick={scrollToGallery}
-              className="btn-primary hero-btn-3d"
+              className="btn-primary btn-tactile"
             >
               <span>Explore All Projects</span>
               <ArrowDown size={18} aria-hidden="true" />
@@ -137,7 +137,7 @@ export default function Hero({ metrics = { totalProjects: 10, totalTracks: 6, di
             <a
               href="#filter-toolbar"
               onClick={scrollToFilters}
-              className="btn-secondary hero-btn-3d"
+              className="btn-secondary btn-tactile"
             >
               <Filter size={16} aria-hidden="true" />
               <span>Filter by Track</span>

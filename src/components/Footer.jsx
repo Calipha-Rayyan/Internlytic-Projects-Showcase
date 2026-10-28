@@ -1,88 +1,182 @@
 import React from 'react';
-import { Sparkles, ShieldCheck, ArrowUp } from 'lucide-react';
+import { ArrowUp, Info, Compass, Filter, Layers } from 'lucide-react';
 
 export default function Footer() {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  const scrollToSection = (id) => {
+    const el = document.getElementById(id);
+    if (el) {
+      const yOffset = -75;
+      const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      window.scrollTo({ top: y, behavior: 'smooth' });
+    }
+  };
+
   return (
     <footer className="footer" role="contentinfo">
       <div className="container">
         <div className="footer-top-grid">
-          {/* Brand & Purpose */}
+          {/* Column 1: Brand & Purpose & Sample-Data Disclosure */}
           <div className="footer-brand-col">
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+            <div className="footer-brand-header">
               <img
                 src="/logo/internlytic-mark.svg"
                 alt="Internlytic Mark"
-                width="36"
-                height="36"
+                width="34"
+                height="34"
+                className="footer-brand-mark"
               />
               <span className="footer-brand-title">
-                INTERNLYTIC <span style={{ color: 'var(--color-teal)' }}>TECHNOLOGIES</span>
+                INTERNLYTIC <span className="brand-accent">TECHNOLOGIES</span>
               </span>
             </div>
             <p className="footer-tagline">
-              Projects Showcase is a professional frontend demonstration celebrating the work, engineering rigor, and innovation produced across internship development tracks.
+              Internship Projects Showcase is a modern frontend experience celebrating technical execution, human-centered UI/UX design, and architectural innovation across engineering disciplines.
             </p>
+            {/* Honest, unobtrusive sample-data disclosure */}
+            <div className="footer-sample-notice" role="note">
+              <Info size={14} className="notice-icon" aria-hidden="true" />
+              <span>Sample project records are illustrative and do not represent actual company submissions.</span>
+            </div>
           </div>
 
-          {/* Demonstration Tracks */}
-          <div>
-            <h4 className="footer-heading">Showcase Tracks</h4>
-            <ul className="footer-links-list">
-              <li><span className="footer-link">AI &amp; Machine Learning</span></li>
-              <li><span className="footer-link">Web Development</span></li>
-              <li><span className="footer-link">Data Science &amp; Analytics</span></li>
-              <li><span className="footer-link">Mobile Applications</span></li>
-              <li><span className="footer-link">UI/UX Architecture</span></li>
-              <li><span className="footer-link">Cloud &amp; DevOps</span></li>
-            </ul>
-          </div>
-
-          {/* Quick Actions / Navigation */}
-          <div>
-            <h4 className="footer-heading">Navigation</h4>
+          {/* Column 2: Showcase Tracks */}
+          <div className="footer-nav-col">
+            <h4 className="footer-heading">
+              <Layers size={14} color="#18B59A" aria-hidden="true" />
+              <span>Showcase Tracks</span>
+            </h4>
             <ul className="footer-links-list">
               <li>
-                <a href="#hero-heading" onClick={(e) => { e.preventDefault(); scrollToTop(); }} className="footer-link">
-                  Top of Showcase
-                </a>
-              </li>
-              <li>
-                <a href="#gallery-section" className="footer-link">
-                  Projects Gallery
-                </a>
-              </li>
-              <li>
-                <a href="#filter-toolbar" className="footer-link">
-                  Track Filters
-                </a>
+                <button
+                  type="button"
+                  onClick={() => scrollToSection('gallery-section')}
+                  className="footer-link-btn"
+                >
+                  Web Development
+                </button>
               </li>
               <li>
                 <button
                   type="button"
-                  onClick={scrollToTop}
-                  className="footer-link"
-                  style={{ display: 'inline-flex', alignItems: 'center', gap: '0.35rem', marginTop: '0.5rem' }}
+                  onClick={() => scrollToSection('gallery-section')}
+                  className="footer-link-btn"
                 >
-                  <ArrowUp size={14} aria-hidden="true" />
-                  <span>Back to top</span>
+                  AI &amp; Machine Learning
+                </button>
+              </li>
+              <li>
+                <button
+                  type="button"
+                  onClick={() => scrollToSection('gallery-section')}
+                  className="footer-link-btn"
+                >
+                  Data Science
+                </button>
+              </li>
+              <li>
+                <button
+                  type="button"
+                  onClick={() => scrollToSection('gallery-section')}
+                  className="footer-link-btn"
+                >
+                  Mobile Applications
+                </button>
+              </li>
+              <li>
+                <button
+                  type="button"
+                  onClick={() => scrollToSection('gallery-section')}
+                  className="footer-link-btn"
+                >
+                  UI/UX Design
+                </button>
+              </li>
+              <li>
+                <button
+                  type="button"
+                  onClick={() => scrollToSection('gallery-section')}
+                  className="footer-link-btn"
+                >
+                  Cloud &amp; DevOps
                 </button>
               </li>
             </ul>
           </div>
+
+          {/* Column 3: Navigation & Deliberate Interactive Back to Top Control */}
+          <div className="footer-nav-col">
+            <h4 className="footer-heading">
+              <Compass size={14} color="#18B59A" aria-hidden="true" />
+              <span>Navigation</span>
+            </h4>
+            <ul className="footer-links-list">
+              <li>
+                <a
+                  href="#hero-heading"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    scrollToTop();
+                  }}
+                  className="footer-link"
+                >
+                  Explore Top
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#gallery-section"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    scrollToSection('gallery-section');
+                  }}
+                  className="footer-link"
+                >
+                  Project Gallery
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#filter-toolbar"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    scrollToSection('filter-toolbar');
+                  }}
+                  className="footer-link"
+                >
+                  Track &amp; Tech Filters
+                </a>
+              </li>
+            </ul>
+
+            {/* Back to Top Interactive 3D Tactile Control */}
+            <div className="footer-back-to-top-wrapper">
+              <button
+                type="button"
+                onClick={scrollToTop}
+                className="btn-back-to-top btn-tactile"
+                aria-label="Back to top of page"
+                title="Scroll smoothly back to top"
+              >
+                <div className="arrow-circle" aria-hidden="true">
+                  <ArrowUp size={16} />
+                </div>
+                <span>Back to Top</span>
+              </button>
+            </div>
+          </div>
         </div>
 
-        {/* Footer Bottom Row */}
+        {/* Footer Bottom Row - No Year branding */}
         <div className="footer-bottom-row">
           <p className="footer-copyright">
-            &copy; {new Date().getFullYear()} Internlytic Technologies. Independent Demonstration Project.
+            &copy; Internlytic Technologies. Independent Demonstration Project.
           </p>
-          <div className="footer-disclaimer-pill">
-            <ShieldCheck size={14} color="#18B59A" aria-hidden="true" />
-            <span>Fictional demonstration data only &bull; Safe frontend build</span>
+          <div className="footer-bottom-badge">
+            <span>Modern 3D Animated Showcase</span>
           </div>
         </div>
       </div>

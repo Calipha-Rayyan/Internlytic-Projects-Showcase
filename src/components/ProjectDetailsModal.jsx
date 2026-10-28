@@ -114,7 +114,7 @@ export default function ProjectDetailsModal({ project, onClose }) {
             </span>
             <span className="modal-status-badge">
               <Info size={13} aria-hidden="true" />
-              <span>Illustrative Demo Record</span>
+              <span>Sample Project</span>
             </span>
           </div>
 
@@ -141,17 +141,17 @@ export default function ProjectDetailsModal({ project, onClose }) {
             </div>
 
             <div className="meta-card">
-              <div className="modal-meta-item-label">Showcase Record Date</div>
+              <div className="modal-meta-item-label">Component Architecture</div>
               <div className="modal-meta-item-value">
-                <Calendar size={15} color="#18B59A" aria-hidden="true" />
-                <span>{project.createdAt || '2026 Season'}</span>
+                <Tag size={15} color="#18B59A" aria-hidden="true" />
+                <span>{project.technologies ? `${project.technologies.length} Stack Components` : 'Multi-tier'}</span>
               </div>
             </div>
 
             <div className="meta-card">
               <div className="modal-meta-item-label">Record Classification</div>
               <div className="modal-meta-item-value">
-                <Tag size={15} color="#18B59A" aria-hidden="true" />
+                <Info size={15} color="#18B59A" aria-hidden="true" />
                 <span>Sample Project</span>
               </div>
             </div>

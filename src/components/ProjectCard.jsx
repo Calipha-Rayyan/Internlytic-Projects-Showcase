@@ -145,7 +145,6 @@ export default function ProjectCard({ project, index = 0, onOpenDetails }) {
         <div className="card-intern-row">
           <User size={13} color="#18B59A" aria-hidden="true" />
           <span className="card-intern-name">{project.internName}</span>
-          <span className="card-sample-pill" title="Demonstration Record">Demo Record</span>
         </div>
 
         <p className="card-description">
